@@ -65,7 +65,6 @@ provSexPivot <- provSex %>%
   ungroup()
 
 
-
 #### Write computed tables to teams SQLite database #### 
 dbWriteTable(t1, "provSexPivot", provSexPivot, overwrite=TRUE)
 dbWriteTable(t1, "acPop", acPop, overwrite=TRUE)
