@@ -3,39 +3,19 @@
 library(RSQLite) #Use SQLite database to store and read data
 library(dplyr) # Data manipulation
 library(tidyverse) #Data science package
+library(tidyr) #Data science package
 library(readstata13) #Read Stata files into R
-library(xlsx)
 
 # Note where VNSO code/data is on current computer
 repository <- file.path(dirname(rstudioapi::getSourceEditorContext()$path))
 setwd(repository) # Required for file.choose() function
 
-#read stata files
 
-#cover <- read.dta13("data/secure/stata/cover_factors.dta")
-#household <- read.dta13("data/secure/stata/Household_factors.dta")
-#person <- read.dta13("data/secure/stata/Person_factors.dta")
-#livestock <- read.dta13("data/secure/stata/Livestock_roster_new.dta")
-#appliances <- read.dta13("data/secure/stata/roster_appliances.dta")
-#communication <- read.dta13("data/secure/stata/roster_communication.dta")
-#memberDied <- read.dta13("data/secure/stata/roster_member_died.dta")
-#transport <- read.dta13("data/secure/stata/roster_transport.dta")
-
-# Establish connection to the Census 2020 SQLite database
+# Establish connection to the SQLite databases
 mydb <- dbConnect(RSQLite::SQLite(), "data/secure/sqlite/census2020.SQLite")
-
-#Write Stata files into the SQLite database
-#dbWriteTable(mydb, "cover", cover, overwrite = TRUE)
-#dbWriteTable(mydb, "household", household, overwrite = TRUE)
-#dbWriteTable(mydb, "person", person, overwrite = TRUE)
-#dbWriteTable(mydb, "livestock", livestock, overwrite = TRUE)
-#dbWriteTable(mydb, "appliances", appliances, overwrite = TRUE)
-#dbWriteTable(mydb, "communication", communication, overwrite = TRUE)
-#dbWriteTable(mydb, "memberDied", memberDied, overwrite = TRUE)
-#dbWriteTable(mydb, "transport", transport, overwrite = TRUE)
+t1 <- dbConnect(RSQLite::SQLite(), "data/open/team1/team1.SQLite")
 
 #### Read data from SQLite database and run summary ####
-
 provPop <- dbGetQuery(mydb, "SELECT province, 
                                     sum(province_factor) as population
                              FROM person
@@ -47,9 +27,6 @@ acPop <- dbGetQuery(mydb, "SELECT area_council,
                            FROM person
                            WHERE can_enumerate = 1
                            GROUP BY area_council")
-
-write.csv(acPop, "test.csv")
-
 
 pop_hh <- dbGetQuery(mydb, "SELECT province,
                                    round(sum(hhld_ac_factor * hhsize)) as population
@@ -68,25 +45,12 @@ livestock <- dbGetQuery(mydb, "SELECT household.area_council,
                               ORDER BY household.island
                         ")
 
-
+#Uaing pivot_wider to cross-tabulate with 2 variables
 livestockpivot <- livestock %>%
   pivot_wider(names_from = livestock_id, values_from = totallivestock, values_fill = 0) %>%
   ungroup()
 
-#View(livestockpivot)
-
-#### Write tables to Excel ####
-write.csv(provPop, "data/open/team1/provPop.csv", row.names = FALSE)
-write.csv(acPop, "data/open/team1/acPop.csv", row.names = FALSE)
-write.csv(livestock, "data/open/team1/livestock.csv", row.names = FALSE)
-write.csv(livestockpivot, "data/open/team1/livestockpivot.csv", row.names = FALSE)
-
-
-
-
-
-
-
-
-
-
+#### Write computed tables to teams SQLite database #### 
+dbWriteTable(t1, "provPop", provPop, overwrite=TRUE)
+dbWriteTable(t1, "acPop", acPop, overwrite=TRUE)
+dbWriteTable(t1, "livestockpivot", livestockpivot, overwrite=TRUE)
