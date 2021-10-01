@@ -23,12 +23,25 @@ provPop <- dbGetQuery(mydb, "SELECT province,
                              FROM person
                              WHERE can_enumerate = 1
                              GROUP BY province ")
+provsex <- dbGetQuery(mydb, "SELECT province, sex, round(sum(province_factor)) as population
+                             FROM person
+                             WHERE can_enumerate = 1
+                             GROUP BY province, sex ")
+provsexpivot <- provsex %>%
+  filter(population != "NA") %>%
+  pivot_wider(names_from = sex, values_from = population,values_fill= 0) %>%
+  ungroup()
 
-acPop <- dbGetQuery(mydb, "SELECT area_council,
-                                  sum(ac_factor) as population
+acPop <- dbGetQuery(mydb, "SELECT area_council, sex,
+                           round(sum(ac_factor)) as population
                            FROM person
-                           WHERE can_enumerate = 1
+                           WHERE can_enumerate= 1
                            GROUP BY area_council")
+provacpivot <- acPop %>%
+  filter(population != "NA") %>%
+  pivot_wider(names_from = sex, values_from = population,values_fill= 0) %>%
+  ungroup()
+dbWriteTable(t4, "provacpivot", provacpivot, overwrite = TRUE)
 
 pop_hh <- dbGetQuery(mydb, "SELECT province,
                                    round(sum(hhld_ac_factor * hhsize)) as population
