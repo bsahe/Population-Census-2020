@@ -59,6 +59,120 @@ livestock <- dbGetQuery(mydb, "SELECT household.area_council,
                               GROUP BY household.area_council, livestock.livestock_id
                               ORDER BY household.island
                         ")
+#seeing
+
+healthSeeing <- dbGetQuery(mydb,"SELECT seeing, sex,area_council,urban_rural,age_5yr_grp_80,
+                           round(sum(province_factor)) as population
+                           FROM person
+                           where can_enumerate= 1
+                           group by area_council,sex, urban_rural,age_5yr_grp_80 ")
+
+causeOfdiffseeing <- dbGetQuery(mydb,"SELECT cause_of_diff_seeing,sex,age_5yr_grp_80,
+                           round(sum(province_factor)) as population
+                           FROM person
+                           where can_enumerate= 1
+                           group by sex,age_5yr_grp_80 ")
+#hearing
+
+healthhearing <- dbGetQuery(mydb,"SELECT hearing, sex,area_council,urban_rural,age_5yr_grp_80,
+                           round(sum(province_factor)) as population
+                           FROM person
+                           where can_enumerate= 1
+                           group by area_council,sex, urban_rural,age_5yr_grp_80 ")
+
+
+causeOfdiffHearing <- dbGetQuery(mydb,"SELECT cause_of_diff_hearing,sex,age_5yr_grp_80,
+                           round(sum(province_factor)) as population
+                           FROM person
+                           where can_enumerate= 1
+                           group by sex,age_5yr_grp_80 ")
+
+#walking
+
+healthwalking <- dbGetQuery(mydb,"SELECT walking, sex,area_council,urban_rural,age_5yr_grp_80,
+                           round(sum(province_factor)) as population
+                           FROM person
+                           where can_enumerate= 1
+                           group by area_council,sex, urban_rural,age_5yr_grp_80 ")
+
+causeOfdiffwalking <- dbGetQuery(mydb,"SELECT cause_of_diff_walking,sex,age_5yr_grp_80,
+                           round(sum(province_factor)) as population
+                           FROM person
+                           where can_enumerate= 1
+                           group by sex,age_5yr_grp_80 ")
+
+#remembering
+
+healthremembering <- dbGetQuery(mydb,"SELECT remembering, sex,area_council,urban_rural,age_5yr_grp_80,
+                           round(sum(province_factor)) as population
+                           FROM person
+                           where can_enumerate= 1
+                           group by area_council,sex, urban_rural,age_5yr_grp_80 ")
+
+causeOfdifflearning <- dbGetQuery(mydb,"SELECT cause_of_diff_learning,sex,age_5yr_grp_80,
+                           round(sum(province_factor)) as population
+                           FROM person
+                           where can_enumerate= 1
+                           group by sex,age_5yr_grp_80 ")
+#selfcare
+
+healthselfcare <- dbGetQuery(mydb,"SELECT selfcare, sex,area_council,urban_rural,age_5yr_grp_80,
+                           round(sum(province_factor)) as population
+                           FROM person
+                           where can_enumerate= 1
+                           group by area_council,sex, urban_rural,age_5yr_grp_80 ")
+
+causeOfdiffselfcare <- dbGetQuery(mydb,"SELECT cause_of_diff_selfcare,sex,age_5yr_grp_80,
+                           round(sum(province_factor)) as population
+                           FROM person
+                           where can_enumerate= 1
+                           group by sex,age_5yr_grp_80 ")
+#communication
+
+healthcommunication <- dbGetQuery(mydb,"SELECT communication, sex,area_council,urban_rural,age_5yr_grp_80,
+                           round(sum(province_factor)) as population
+                           FROM person
+                           where can_enumerate= 1
+                           group by area_council,sex, urban_rural,age_5yr_grp_80 ")
+
+
+causeOfdiffcommunication <- dbGetQuery(mydb,"SELECT cause_of_diff_communicating,sex,age_5yr_grp_80,
+                           round(sum(province_factor)) as population
+                           FROM person
+                           where can_enumerate= 1
+                           group by sex,age_5yr_grp_80 ")
+#consumption1
+
+consumption1 <- dbGetQuery(mydb,"SELECT consumption__1, sex,area_council,urban_rural,age,
+                           round(sum(province_factor)) as population
+                           FROM person
+                           where can_enumerate= 1
+                           group by area_council,sex, urban_rural,age ")
+#consumption2
+consumption2 <- dbGetQuery(mydb,"SELECT consumption__2, sex,area_council,urban_rural,age,
+                           round(sum(province_factor)) as population
+                           FROM person
+                           where can_enumerate= 1
+                           group by area_council,sex, urban_rural,age ")
+#consumption3
+consumption3 <- dbGetQuery(mydb,"SELECT consumption__3, sex,area_council,urban_rural,age,
+                           round(sum(province_factor)) as population
+                           FROM person
+                           where can_enumerate= 1
+                           group by area_council,sex, urban_rural,age ")
+#consumption4
+consumption4 <- dbGetQuery(mydb,"SELECT consumption__4, sex,area_council,urban_rural,age,
+                           round(sum(province_factor)) as population
+                           FROM person
+                           where can_enumerate= 1
+                           group by area_council,sex, urban_rural,age ")
+#treatedBetnets
+treatedBetnets <- dbGetQuery(mydb,"SELECT treated_bednets, sex,area_council,urban_rural,
+                           round(sum(province_factor)) as population
+                           FROM person
+                           where can_enumerate= 1
+                           group by area_council,sex, urban_rural ")
+
 
 #Uaing pivot_wider to cross-tabulate with 2 variables
 livestockpivot <- livestock %>%
