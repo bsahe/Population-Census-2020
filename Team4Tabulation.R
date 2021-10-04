@@ -1,4 +1,5 @@
 #### Load Libraries and data ####
+###HEALTH TEAM4
 
 library(RSQLite) #Use SQLite database to store and read data
 library(dplyr) # Data manipulation
@@ -13,13 +14,15 @@ setwd(repository) # Required for file.choose() function
 
 # Establish connection to the SQLite databases
 mydb <- dbConnect(RSQLite::SQLite(), "data/secure/sqlite/census2020.SQLite")
-t4 <- dbConnect(RSQLite::SQLite(), "data/open/team1/team4.SQLite")
+t4 <- dbConnect(RSQLite::SQLite(), "data/open/team4/team4.SQLite")
 
 
 
 #### Read data from SQLite database and run summary ####
 provPop <- dbGetQuery(mydb, "SELECT province, 
                                     sum(province_factor) as population
+                                    
+                                    
                              FROM person
                              WHERE can_enumerate = 1
                              GROUP BY province ")
@@ -84,13 +87,18 @@ person <- page %>%
       age >= 70           ~ "70 +"
     ),
   )
-#seeing
+
+
+#Table 5.1 seeing
+
 
 healthSeeing <- dbGetQuery(mydb,"SELECT seeing, sex,area_council,urban_rural,age,
                            round(sum(province_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by area_council,sex, urban_rural,age ")
+
+#Table 5.2 difficulty in seeing
 
 causeOfdiffseeing <- dbGetQuery(mydb,"SELECT cause_of_diff_seeing,sex,age,
                            round(sum(province_factor)) as population
@@ -130,7 +138,7 @@ seeingDisability_oldAge <- dbGetQuery(mydb, "SELECT province, area_council, urba
                                 ")
 
 
-#hearing
+#Table 5.3 hearing
 
 healthhearing <- dbGetQuery(mydb,"SELECT hearing, sex,area_council,urban_rural,age_5yr_grp_80,
                            round(sum(province_factor)) as population
@@ -138,6 +146,7 @@ healthhearing <- dbGetQuery(mydb,"SELECT hearing, sex,area_council,urban_rural,a
                            where can_enumerate= 1
                            group by area_council,sex, urban_rural,age_5yr_grp_80 ")
 
+#Table 5.4 difficulty in hearing
 
 causeOfdiffHearing <- dbGetQuery(mydb,"SELECT cause_of_diff_hearing,sex,age,
                            round(sum(province_factor)) as population
@@ -176,13 +185,15 @@ hearingDisability_oldAge <- dbGetQuery(mydb, "SELECT province, area_council, urb
                                       GROUP BY province, area_council, urban_rural
                                 ")
 
-#walking
+#Table 5.5 walking
 
 healthwalking <- dbGetQuery(mydb,"SELECT walking, sex,area_council,urban_rural,age,
                            round(sum(province_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by area_council,sex, urban_rural,age")
+
+#Table 5.6 difficulty in walking
 
 causeOfdiffwalking <- dbGetQuery(mydb,"SELECT cause_of_diff_walking,sex,age_5yr_grp_80,
                            round(sum(province_factor)) as population
@@ -222,13 +233,15 @@ walkingDisability_oldAge <- dbGetQuery(mydb, "SELECT province, area_council, urb
                                       GROUP BY province, area_council, urban_rural
                                 ")
 
-#remembering
+#Table 5.7 remembering
 
 healthremembering <- dbGetQuery(mydb,"SELECT remembering, sex,area_council,urban_rural,age_5yr_grp_80,
                            round(sum(province_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by area_council,sex, urban_rural,age_5yr_grp_80 ")
+
+#Table 5.8 difficulty in remembering 
 
 causeOfdifflearning <- dbGetQuery(mydb,"SELECT cause_of_diff_learning,sex,age_5yr_grp_80,
                            round(sum(province_factor)) as population
@@ -267,13 +280,15 @@ rememberingDisability_oldAge <- dbGetQuery(mydb, "SELECT province, area_council,
                                 ")
 
 
-#selfcare
+#Table 5.9 selfcare
 
 healthselfcare <- dbGetQuery(mydb,"SELECT selfcare, sex,area_council,urban_rural,age_5yr_grp_80,
                            round(sum(province_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by area_council,sex, urban_rural,age_5yr_grp_80 ")
+
+#Table 5.10 difficulty in selfcare
 
 causeOfdiffselfcare <- dbGetQuery(mydb,"SELECT cause_of_diff_selfcare,sex,age_5yr_grp_80,
                            round(sum(province_factor)) as population
@@ -311,13 +326,15 @@ selfcareDisability_oldAge <- dbGetQuery(mydb, "SELECT province, area_council, ur
                                       WHERE can_enumerate = 1 and cause_of_diff_selfcare ='Related to old age'
                                       GROUP BY province, area_council, urban_rural
                                 ")
-#communication
+#Table 5.11 communication
 
 healthcommunication <- dbGetQuery(mydb,"SELECT communication, sex,area_council,urban_rural,age_5yr_grp_80,
                            round(sum(province_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by area_council,sex, urban_rural,age_5yr_grp_80 ")
+
+#Table 5.12 difficulty in communication
 
 
 causeOfdiffcommunication <- dbGetQuery(mydb,"SELECT cause_of_diff_communicating,sex,age_5yr_grp_80,
@@ -387,6 +404,12 @@ treatedBetnets <- dbGetQuery(mydb,"SELECT treated_bednets, sex,area_council,urba
                            where can_enumerate= 1
                            group by area_council,sex, urban_rural ")
 
+sleptUnderBetnets <- dbGetQuery(mydb,"SELECT slept_under_bednets,sex, area_council,urban_rural,
+                                round(sum(province_factor)) as population
+                                FROM person
+                                where can_enumerate= 1
+                                group by area_council,sex,urban_rural")
+
 
 #Uaing pivot_wider to cross-tabulate with 2 variables
 livestockpivot <- livestock %>%
@@ -397,20 +420,49 @@ livestockpivot <- livestock %>%
 dbWriteTable(t4, "provPop", provPop, overwrite=TRUE)
 dbWriteTable(t1, "acPop", acPop, overwrite=TRUE)
 dbWriteTable(t1, "livestockpivot", livestockpivot, overwrite=TRUE)
+
 dbWriteTable(t4, "healthSeeing", healthSeeing, overwrite=TRUE)
 dbWriteTable(t4, "causeOfdiffseeing", causeOfdiffseeing, overwrite=TRUE)
+dbWriteTable(t4, "seeingDisability_acquired", seeingDisability_acquired, overwrite=TRUE)
+dbWriteTable(t4, "seeingDisability_congenital", seeingDisability_congenital, overwrite=TRUE)
+dbWriteTable(t4, "seeingDisability_oldAge", seeingDisability_oldAge, overwrite=TRUE)
+
 dbWriteTable(t4, "healthhearing", healthhearing, overwrite=TRUE)
 dbWriteTable(t4, "causeOfdiffHearing", causeOfdiffHearing, overwrite=TRUE)
+dbWriteTable(t4, "hearingDisability_acquired", hearingDisability_acquired, overwrite=TRUE)
+dbWriteTable(t4, "hearingDisability_congenital",hearingDisability_congenital, overwrite=TRUE)
+dbWriteTable(t4, "hearingDisability_oldAge", hearingDisability_oldAge, overwrite=TRUE)
+
 dbWriteTable(t4, "healthwalking", healthwalking, overwrite=TRUE)
 dbWriteTable(t4, "causeOfdiffwalking", causeOfdiffwalking, overwrite=TRUE)
+dbWriteTable(t4, "walkingDisability_acquired", walkingDisability_acquired, overwrite=TRUE)
+dbWriteTable(t4, "walkingDisability_congenital",walkingDisability_congenital, overwrite=TRUE)
+dbWriteTable(t4, "walkingDisability_oldAge", walkingDisability_oldAge, overwrite=TRUE)
+
 dbWriteTable(t4, "healthremembering", healthremembering, overwrite=TRUE)
 dbWriteTable(t4, "causeOfdifflearning", causeOfdifflearning, overwrite=TRUE)
+dbWriteTable(t4, "rememberingDisability_acquired", rememberingDisability_acquired, overwrite=TRUE)
+dbWriteTable(t4, "rememberingDisability_congenital",rememberingDisability_congenital, overwrite=TRUE)
+dbWriteTable(t4, "rememberingDisability_oldAge", rememberingDisability_oldAge, overwrite=TRUE)
+
+
 dbWriteTable(t4, "healthselfcare",healthselfcare, overwrite=TRUE)
 dbWriteTable(t4, "causeOfdiffselfcare", causeOfdiffselfcare, overwrite=TRUE)
+dbWriteTable(t4, "selfcareDisability_acquired", selfcareDisability_acquired, overwrite=TRUE)
+dbWriteTable(t4, "selfcareDisability_congenital",selfcareDisability_congenital, overwrite=TRUE)
+dbWriteTable(t4, "selfcareDisability_oldAge", selfcareDisability_oldAge, overwrite=TRUE)
+
+
 dbWriteTable(t4, "healthcommunication", healthcommunication, overwrite=TRUE)
 dbWriteTable(t4, "causeOfdiffcommunication", causeOfdiffcommunication, overwrite=TRUE)
+dbWriteTable(t4, "communicationDisability_acquired", communicationDisability_acquired, overwrite=TRUE)
+dbWriteTable(t4, "communicationDisability_congenital",communicationDisability_congenital, overwrite=TRUE)
+dbWriteTable(t4, "communicationDisability_oldAge", communicationDisability_oldAge, overwrite=TRUE)
+
 dbWriteTable(t4, "consumption1", consumption1, overwrite=TRUE)
 dbWriteTable(t4, "consumption2", consumption2, overwrite=TRUE)
 dbWriteTable(t4, "consumption3", consumption3, overwrite=TRUE)
 dbWriteTable(t4, "consumption4", consumption4, overwrite=TRUE)
 dbWriteTable(t4, "treatedBetnets", treatedBetnets, overwrite=TRUE)
+dbWriteTable(t4, "sleptUnderBetnets", sleptUnderBetnets, overwrite=TRUE)
+
