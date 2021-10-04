@@ -13,7 +13,7 @@ setwd(repository) # Required for file.choose() function
 
 # Establish connection to the SQLite databases
 mydb <- dbConnect(RSQLite::SQLite(), "data/secure/sqlite/census2020.SQLite")
-t1 <- dbConnect(RSQLite::SQLite(), "data/open/team1/team1.SQLite")
+t6 <- dbConnect(RSQLite::SQLite(), "data/open/team6/team6.SQLite")
 
 #### Read data from SQLite database and run summary ####
 provPop <- dbGetQuery(mydb, "SELECT province, 
@@ -22,11 +22,38 @@ provPop <- dbGetQuery(mydb, "SELECT province,
                              WHERE can_enumerate = 1
                              GROUP BY province ")
 
+provSex<- dbGetQuery(mydb, "SELECT province, sex, 
+                                    round(sum(province_factor)) as population #round to remove decimal
+                             FROM person
+                             WHERE can_enumerate = 1
+                             GROUP BY province, sex ")
+
+acSex<- dbGetQuery(mydb, "SELECT area_council, sex, 
+                                    round(sum(ac_factor)) as population
+                             FROM person
+                             WHERE can_enumerate = 1
+                             GROUP BY area_council, sex ")
+#Create pivot table
+acSexPivot <- acSex %>%
+  filter(population != "NA") %>%
+  pivot_wider(names_from = sex, values_from = population, values_fill = 0) %>%
+  ungroup()
+
+provSexPivot <- provSex %>%
+  filter(population != "NA") %>%
+  pivot_wider(names_from = sex, values_from = population, values_fill = 0) %>%
+  ungroup()
+
 acPop <- dbGetQuery(mydb, "SELECT area_council,
                                   sum(ac_factor) as population
                            FROM person
                            WHERE can_enumerate = 1
                            GROUP BY area_council")
+
+
+#write table to SQLite database
+dbWriteTable(t6,"provSexPivot",provSexPivot, overwrite = TRUE)
+dbWriteTable(t6,"acSexPivot",acSexPivot, overwrite = TRUE)
 
 pop_hh <- dbGetQuery(mydb, "SELECT province,
                                    round(sum(hhld_ac_factor * hhsize)) as population
@@ -45,7 +72,7 @@ livestock <- dbGetQuery(mydb, "SELECT household.area_council,
                               ORDER BY household.island
                         ")
 
-#Uaing pivot_wider to cross-tabulate with 2 variables
+#Using pivot_wider to cross-tabulate with 2 variables
 livestockpivot <- livestock %>%
   pivot_wider(names_from = livestock_id, values_from = totallivestock, values_fill = 0) %>%
   ungroup()
