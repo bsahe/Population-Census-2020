@@ -138,11 +138,12 @@ tab3_15MaritalStatusandSex <- dbGetQuery(mydb, "SELECT province,urban_rural,sex,
                               GROUP BY province,urban_rural,sex,marital_status,hhld_type")
 
 #Table:3:16: Type of legal marriage by sex, area council by province and urban-rural residence.
-tab3_16LegalMarriageBySex <- dbGetQuery(mydb, "SELECT province,area_council, urban_rural,sex,custMarriage_1, custMarriage_2, custMarriage_3,hhld_type,
+tab3_16LegalMarriageBySex <- dbGetQuery(mydb, "SELECT province,area_council,urban_rural,sex,custMarriage_1,custMarriage_2,custMarriage_3,hhld_type,
                               round(sum(province_factor)) as population
                               FROM person
-                              WHERE can_enumerate = 1, marital_status = 2
-                              GROUP BY province,area_council, urban_rural,sex,custMarriage_1, custMarriage_2, custMarriage_3,hhld_type")
+                              WHERE can_enumerate = 1
+                              GROUP BY province, area_council, urban_rural,sex,custMarriage_1, custMarriage_2, custMarriage_3,hhld_type")
+
 
 
 # Select variables eg province & sex
