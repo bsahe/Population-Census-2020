@@ -59,20 +59,6 @@ livestock <- dbGetQuery(mydb, "SELECT household.area_council,
                               GROUP BY household.area_council, livestock.livestock_id
                               ORDER BY household.island
                         ")
-#seeing
-
-healthSeeing <- dbGetQuery(mydb,"SELECT seeing, sex,area_council,urban_rural,age,
-                           round(sum(province_factor)) as population
-                           FROM person
-                           where can_enumerate= 1
-                           group by area_council,sex, urban_rural,age_5yr_grp_70 ")
-
-causeOfdiffseeing <- dbGetQuery(mydb,"SELECT cause_of_diff_seeing,sex,age,
-                           round(sum(province_factor)) as population
-                           FROM person
-                           where can_enumerate= 1
-                           group by sex,age_5yr_grp_80 ")
-
 page<- dbGetQuery(mydb,"SELECT * FROM person")
 page$age_groupe_5_yr <-""
 person <- page %>% 
@@ -97,7 +83,53 @@ person <- page %>%
       
       age >= 70           ~ "70 +"
     ),
-    )
+  )
+#seeing
+
+healthSeeing <- dbGetQuery(mydb,"SELECT seeing, sex,area_council,urban_rural,age,
+                           round(sum(province_factor)) as population
+                           FROM person
+                           where can_enumerate= 1
+                           group by area_council,sex, urban_rural,age ")
+
+causeOfdiffseeing <- dbGetQuery(mydb,"SELECT cause_of_diff_seeing,sex,age,
+                           round(sum(province_factor)) as population
+                           FROM person
+                           where can_enumerate= 1
+                           group by sex,age_5yr_grp_80 ")
+
+seeingDisability_acquired <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
+                                            ROUND(SUM(CASE WHEN seeing='Yes, lots_of_difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
+                                            ROUND(SUM(CASE WHEN seeing='Yes, some difficulty' THEN ac_factor ELSE 0 END)) as yesSomeDifficulty,
+                                            ROUND(SUM(CASE WHEN seeing='No, no difficulty' THEN ac_factor ELSE 0 END)) as noNoDifficulty,
+                                            ROUND(SUM(CASE WHEN seeing='Cannot do at all' THEN ac_factor ELSE 0 END)) as cannotDoAtAll
+                                      FROM person
+                                      WHERE can_enumerate = 1 and cause_of_diff_walking ='Acquired'
+                                      GROUP BY province, area_council, urban_rural
+                                ")
+
+seeingDisability_congenital <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
+                                            ROUND(SUM(CASE WHEN seeing='Yes, lots_of_difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
+                                            ROUND(SUM(CASE WHEN seeing='Yes, some difficulty' THEN ac_factor ELSE 0 END)) as yesSomeDifficulty,
+                                            ROUND(SUM(CASE WHEN seeing='No, no difficulty' THEN ac_factor ELSE 0 END)) as noNoDifficulty,
+                                            ROUND(SUM(CASE WHEN seeing='Cannot do at all' THEN ac_factor ELSE 0 END)) as cannotDoAtAll
+                                      FROM person
+                                      WHERE can_enumerate = 1 and cause_of_diff_walking ='Congenital'
+                                      GROUP BY province, area_council, urban_rural
+                                ")
+
+
+seeingDisability_oldAge <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
+                                            ROUND(SUM(CASE WHEN seeing='Yes, lots_of_difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
+                                            ROUND(SUM(CASE WHEN seeing='Yes, some difficulty' THEN ac_factor ELSE 0 END)) as yesSomeDifficulty,
+                                            ROUND(SUM(CASE WHEN seeing='No, no difficulty' THEN ac_factor ELSE 0 END)) as noNoDifficulty,
+                                            ROUND(SUM(CASE WHEN seeing='Cannot do at all' THEN ac_factor ELSE 0 END)) as cannotDoAtAll
+                                      FROM person
+                                      WHERE can_enumerate = 1 and cause_of_diff_walking ='Related to old age'
+                                      GROUP BY province, area_council, urban_rural
+                                ")
+
+
 #hearing
 
 healthhearing <- dbGetQuery(mydb,"SELECT hearing, sex,area_council,urban_rural,age_5yr_grp_80,
@@ -107,19 +139,50 @@ healthhearing <- dbGetQuery(mydb,"SELECT hearing, sex,area_council,urban_rural,a
                            group by area_council,sex, urban_rural,age_5yr_grp_80 ")
 
 
-causeOfdiffHearing <- dbGetQuery(,"SELECT cause_of_diff_hearing,sex,age_groupe_5_yr,
+causeOfdiffHearing <- dbGetQuery(mydb,"SELECT cause_of_diff_hearing,sex,age,
                            round(sum(province_factor)) as population
                            FROM person
                            where can_enumerate= 1
-                           group by sex, age_groupe_5_yr")
+                           group by sex, age")
+
+hearingDisability_acquired <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
+                                            ROUND(SUM(CASE WHEN hearing='Yes, lots_of_difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
+                                            ROUND(SUM(CASE WHEN hearing='Yes, some difficulty' THEN ac_factor ELSE 0 END)) as yesSomeDifficulty,
+                                            ROUND(SUM(CASE WHEN hearing='No, no difficulty' THEN ac_factor ELSE 0 END)) as noNoDifficulty,
+                                            ROUND(SUM(CASE WHEN hearing='Cannot do at all' THEN ac_factor ELSE 0 END)) as cannotDoAtAll
+                                      FROM person
+                                      WHERE can_enumerate = 1 and cause_of_diff_walking ='Acquired'
+                                      GROUP BY province, area_council, urban_rural
+                                ")
+
+hearingDisability_congenital <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
+                                            ROUND(SUM(CASE WHEN hearing='Yes, lots_of_difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
+                                            ROUND(SUM(CASE WHEN hearing='Yes, some difficulty' THEN ac_factor ELSE 0 END)) as yesSomeDifficulty,
+                                            ROUND(SUM(CASE WHEN hearing='No, no difficulty' THEN ac_factor ELSE 0 END)) as noNoDifficulty,
+                                            ROUND(SUM(CASE WHEN hearing='Cannot do at all' THEN ac_factor ELSE 0 END)) as cannotDoAtAll
+                                      FROM person
+                                      WHERE can_enumerate = 1 and cause_of_diff_walking ='Congenital'
+                                      GROUP BY province, area_council, urban_rural
+                                ")
+
+
+hearingDisability_oldAge <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
+                                            ROUND(SUM(CASE WHEN hearing='Yes, lots_of_difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
+                                            ROUND(SUM(CASE WHEN hearing='Yes, some difficulty' THEN ac_factor ELSE 0 END)) as yesSomeDifficulty,
+                                            ROUND(SUM(CASE WHEN hearing='No, no difficulty' THEN ac_factor ELSE 0 END)) as noNoDifficulty,
+                                            ROUND(SUM(CASE WHEN hearing='Cannot do at all' THEN ac_factor ELSE 0 END)) as cannotDoAtAll
+                                      FROM person
+                                      WHERE can_enumerate = 1 and cause_of_diff_walking ='Related to old age'
+                                      GROUP BY province, area_council, urban_rural
+                                ")
 
 #walking
 
-healthwalking <- dbGetQuery(mydb,"SELECT walking, sex,area_council,urban_rural,age_groupe_5_yr,
+healthwalking <- dbGetQuery(mydb,"SELECT walking, sex,area_council,urban_rural,age,
                            round(sum(province_factor)) as population
                            FROM person
                            where can_enumerate= 1
-                           group by area_council,sex, urban_rural,age_groupe_5_yr")
+                           group by area_council,sex, urban_rural,age")
 
 causeOfdiffwalking <- dbGetQuery(mydb,"SELECT cause_of_diff_walking,sex,age_5yr_grp_80,
                            round(sum(province_factor)) as population
@@ -128,13 +191,34 @@ causeOfdiffwalking <- dbGetQuery(mydb,"SELECT cause_of_diff_walking,sex,age_5yr_
                            group by sex,age_5yr_grp_80 ")
 
 #filter
-walkingDisability <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
-                                            ROUND(SUM(CASE WHEN walking='Yes, lots of difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
+walkingDisability_acquired <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
+                                            ROUND(SUM(CASE WHEN walking='Yes, lots_of_difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
                                             ROUND(SUM(CASE WHEN walking='Yes, some difficulty' THEN ac_factor ELSE 0 END)) as yesSomeDifficulty,
                                             ROUND(SUM(CASE WHEN walking='No, no difficulty' THEN ac_factor ELSE 0 END)) as noNoDifficulty,
                                             ROUND(SUM(CASE WHEN walking='Cannot do at all' THEN ac_factor ELSE 0 END)) as cannotDoAtAll
                                       FROM person
-                                      WHERE can_enumerate = 1
+                                      WHERE can_enumerate = 1 and cause_of_diff_walking ='Acquired'
+                                      GROUP BY province, area_council, urban_rural
+                                ")
+
+walkingDisability_congenital <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
+                                            ROUND(SUM(CASE WHEN walking='Yes, lots_of_difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
+                                            ROUND(SUM(CASE WHEN walking='Yes, some difficulty' THEN ac_factor ELSE 0 END)) as yesSomeDifficulty,
+                                            ROUND(SUM(CASE WHEN walking='No, no difficulty' THEN ac_factor ELSE 0 END)) as noNoDifficulty,
+                                            ROUND(SUM(CASE WHEN walking='Cannot do at all' THEN ac_factor ELSE 0 END)) as cannotDoAtAll
+                                      FROM person
+                                      WHERE can_enumerate = 1 and cause_of_diff_walking ='Congenital'
+                                      GROUP BY province, area_council, urban_rural
+                                ")
+
+
+walkingDisability_oldAge <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
+                                            ROUND(SUM(CASE WHEN walking='Yes, lots_of_difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
+                                            ROUND(SUM(CASE WHEN walking='Yes, some difficulty' THEN ac_factor ELSE 0 END)) as yesSomeDifficulty,
+                                            ROUND(SUM(CASE WHEN walking='No, no difficulty' THEN ac_factor ELSE 0 END)) as noNoDifficulty,
+                                            ROUND(SUM(CASE WHEN walking='Cannot do at all' THEN ac_factor ELSE 0 END)) as cannotDoAtAll
+                                      FROM person
+                                      WHERE can_enumerate = 1 and cause_of_diff_walking ='Related to old age'
                                       GROUP BY province, area_council, urban_rural
                                 ")
 
@@ -151,6 +235,38 @@ causeOfdifflearning <- dbGetQuery(mydb,"SELECT cause_of_diff_learning,sex,age_5y
                            FROM person
                            where can_enumerate= 1
                            group by sex,age_5yr_grp_80 ")
+
+rememberingDisability_acquired <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
+                                            ROUND(SUM(CASE WHEN remembering='Yes, lots_of_difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
+                                            ROUND(SUM(CASE WHEN remembering='Yes, some difficulty' THEN ac_factor ELSE 0 END)) as yesSomeDifficulty,
+                                            ROUND(SUM(CASE WHEN remembering='No, no difficulty' THEN ac_factor ELSE 0 END)) as noNoDifficulty,
+                                            ROUND(SUM(CASE WHEN remembering='Cannot do at all' THEN ac_factor ELSE 0 END)) as cannotDoAtAll
+                                      FROM person
+                                      WHERE can_enumerate = 1 and cause_of_diff_learning ='Acquired'
+                                      GROUP BY province, area_council, urban_rural
+                                ")
+rememberingDisability_congenital <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
+                                            ROUND(SUM(CASE WHEN remembering='Yes, lots_of_difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
+                                            ROUND(SUM(CASE WHEN remembering='Yes, some difficulty' THEN ac_factor ELSE 0 END)) as yesSomeDifficulty,
+                                            ROUND(SUM(CASE WHEN remembering='No, no difficulty' THEN ac_factor ELSE 0 END)) as noNoDifficulty,
+                                            ROUND(SUM(CASE WHEN remembering='Cannot do at all' THEN ac_factor ELSE 0 END)) as cannotDoAtAll
+                                      FROM person
+                                      WHERE can_enumerate = 1 and cause_of_diff_learning ='Congenital'
+                                      GROUP BY province, area_council, urban_rural
+                                ")
+
+
+rememberingDisability_oldAge <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
+                                            ROUND(SUM(CASE WHEN remembering='Yes, lots_of_difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
+                                            ROUND(SUM(CASE WHEN remembering='Yes, some difficulty' THEN ac_factor ELSE 0 END)) as yesSomeDifficulty,
+                                            ROUND(SUM(CASE WHEN remembering='No, no difficulty' THEN ac_factor ELSE 0 END)) as noNoDifficulty,
+                                            ROUND(SUM(CASE WHEN remembering='Cannot do at all' THEN ac_factor ELSE 0 END)) as cannotDoAtAll
+                                      FROM person
+                                      WHERE can_enumerate = 1 and cause_of_diff_learning ='Related to old age'
+                                      GROUP BY province, area_council, urban_rural
+                                ")
+
+
 #selfcare
 
 healthselfcare <- dbGetQuery(mydb,"SELECT selfcare, sex,area_council,urban_rural,age_5yr_grp_80,
@@ -164,6 +280,37 @@ causeOfdiffselfcare <- dbGetQuery(mydb,"SELECT cause_of_diff_selfcare,sex,age_5y
                            FROM person
                            where can_enumerate= 1
                            group by sex,age_5yr_grp_80 ")
+
+selfcareDisability_acquired <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
+                                            ROUND(SUM(CASE WHEN seeing='Yes, lots_of_difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
+                                            ROUND(SUM(CASE WHEN seeing='Yes, some difficulty' THEN ac_factor ELSE 0 END)) as yesSomeDifficulty,
+                                            ROUND(SUM(CASE WHEN seeing='No, no difficulty' THEN ac_factor ELSE 0 END)) as noNoDifficulty,
+                                            ROUND(SUM(CASE WHEN seeing='Cannot do at all' THEN ac_factor ELSE 0 END)) as cannotDoAtAll
+                                      FROM person
+                                      WHERE can_enumerate = 1 and cause_of_diff_selfcare ='Acquired'
+                                      GROUP BY province, area_council, urban_rural
+                                ")
+
+selfcareDisability_congenital <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
+                                            ROUND(SUM(CASE WHEN selfcare='Yes, lots_of_difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
+                                            ROUND(SUM(CASE WHEN selfcare='Yes, some difficulty' THEN ac_factor ELSE 0 END)) as yesSomeDifficulty,
+                                            ROUND(SUM(CASE WHEN selfcare='No, no difficulty' THEN ac_factor ELSE 0 END)) as noNoDifficulty,
+                                            ROUND(SUM(CASE WHEN selfcare='Cannot do at all' THEN ac_factor ELSE 0 END)) as cannotDoAtAll
+                                      FROM person
+                                      WHERE can_enumerate = 1 and cause_of_diff_selfcare ='Congenital'
+                                      GROUP BY province, area_council, urban_rural
+                                ")
+
+
+selfcareDisability_oldAge <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
+                                            ROUND(SUM(CASE WHEN selfcare='Yes, lots_of_difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
+                                            ROUND(SUM(CASE WHEN selfcare='Yes, some difficulty' THEN ac_factor ELSE 0 END)) as yesSomeDifficulty,
+                                            ROUND(SUM(CASE WHEN selfcare='No, no difficulty' THEN ac_factor ELSE 0 END)) as noNoDifficulty,
+                                            ROUND(SUM(CASE WHEN selfcare='Cannot do at all' THEN ac_factor ELSE 0 END)) as cannotDoAtAll
+                                      FROM person
+                                      WHERE can_enumerate = 1 and cause_of_diff_selfcare ='Related to old age'
+                                      GROUP BY province, area_council, urban_rural
+                                ")
 #communication
 
 healthcommunication <- dbGetQuery(mydb,"SELECT communication, sex,area_council,urban_rural,age_5yr_grp_80,
@@ -178,6 +325,36 @@ causeOfdiffcommunication <- dbGetQuery(mydb,"SELECT cause_of_diff_communicating,
                            FROM person
                            where can_enumerate= 1
                            group by sex,age_5yr_grp_80 ")
+
+communicationDisability_acquired <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
+                                            ROUND(SUM(CASE WHEN communication='Yes, lots_of_difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
+                                            ROUND(SUM(CASE WHEN communication='Yes, some difficulty' THEN ac_factor ELSE 0 END)) as yesSomeDifficulty,
+                                            ROUND(SUM(CASE WHEN communication='No, no difficulty' THEN ac_factor ELSE 0 END)) as noNoDifficulty,
+                                            ROUND(SUM(CASE WHEN communication='Cannot do at all' THEN ac_factor ELSE 0 END)) as cannotDoAtAll
+                                      FROM person
+                                      WHERE can_enumerate = 1 and cause_of_diff_communicating ='Acquired'
+                                      GROUP BY province, area_council, urban_rural
+                                ")
+communicationDisability_congenital <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
+                                            ROUND(SUM(CASE WHEN communication='Yes, lots_of_difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
+                                            ROUND(SUM(CASE WHEN communication='Yes, some difficulty' THEN ac_factor ELSE 0 END)) as yesSomeDifficulty,
+                                            ROUND(SUM(CASE WHEN communication='No, no difficulty' THEN ac_factor ELSE 0 END)) as noNoDifficulty,
+                                            ROUND(SUM(CASE WHEN communication='Cannot do at all' THEN ac_factor ELSE 0 END)) as cannotDoAtAll
+                                      FROM person
+                                      WHERE can_enumerate = 1 and cause_of_diff_communicating ='Congenital'
+                                      GROUP BY province, area_council, urban_rural
+                                ")
+
+
+communicationDisability_oldAge <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
+                                            ROUND(SUM(CASE WHEN selfcare='Yes, lots_of_difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
+                                            ROUND(SUM(CASE WHEN selfcare='Yes, some difficulty' THEN ac_factor ELSE 0 END)) as yesSomeDifficulty,
+                                            ROUND(SUM(CASE WHEN selfcare='No, no difficulty' THEN ac_factor ELSE 0 END)) as noNoDifficulty,
+                                            ROUND(SUM(CASE WHEN selfcare='Cannot do at all' THEN ac_factor ELSE 0 END)) as cannotDoAtAll
+                                      FROM person
+                                      WHERE can_enumerate = 1 and cause_of_diff_communicating ='Related to old age'
+                                      GROUP BY province, area_council, urban_rural
+                                ")
 #consumption1
 
 consumption1 <- dbGetQuery(mydb,"SELECT consumption__1, sex,area_council,urban_rural,age,
