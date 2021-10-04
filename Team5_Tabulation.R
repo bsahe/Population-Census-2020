@@ -38,20 +38,26 @@ Tab6.2Pivot <- Tab6.2 %>%
   pivot_wider(names_from = sex, values_from = population, values_fill = 0) %>%
   ungroup()
 
-Tab6.3 <- dbGetQuery(mydb, "SELECT sex, level_attending_School, age, area_council, province, round(sum(province_factor)) as population
+Tab6.3 <- dbGetQuery(mydb, "SELECT sex, level_attending_School, area_council, province, round(sum(province_factor)) as population
                      FROM person
                      WHERE can_enumerate = 1 and attending_School = 'Yes'
-                     GROUP BY sex, level_attending_School, age, area_council, province")
+                     GROUP BY province, urban_rural, area_council, sex, level_attending_School")
 
 Tab6.3Pivot <- Tab6.3 %>%
   filter(population != "NA") %>%
   pivot_wider(names_from = level_attending_school, values_from = population, values_fill = 0) %>%
   ungroup()
 
-Tab6.4 <- dbGetQuery(mydb, "SELECT sex, level_attending_School, age, area_council, province, round(sum(province_factor)) as population
+Tab6.4 <- dbGetQuery(mydb, "SELECT sex, level_attending_School,area_council, province, urban_rural, round(sum(province_factor)) as population
                      FROM person
                      WHERE can_enumerate = 1 and attending_School = 'Yes'
-                     GROUP BY sex, level_attending_School, age, area_council, province")
+                     GROUP BY sex, level_attending_School, area_council, province, urban_rural")
+
+Tab6.4Pivot <- Tab6.4 %>%
+  filter(population != "NA") %>%
+  pivot_wider(names_from = sex, values_from = population, values_fill = 0 )
+
+
 
 #write table to SQLite database
 dbWriteTable(t5, "provSexPivot",provSexPivot, overwrite = TRUE)
