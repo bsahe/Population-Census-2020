@@ -427,6 +427,7 @@ dbWriteTable(t4, "seeingDisability_acquired", seeingDisability_acquired, overwri
 dbWriteTable(t4, "seeingDisability_congenital", seeingDisability_congenital, overwrite=TRUE)
 dbWriteTable(t4, "seeingDisability_oldAge", seeingDisability_oldAge, overwrite=TRUE)
 
+
 dbWriteTable(t4, "healthhearing", healthhearing, overwrite=TRUE)
 dbWriteTable(t4, "causeOfdiffHearing", causeOfdiffHearing, overwrite=TRUE)
 dbWriteTable(t4, "hearingDisability_acquired", hearingDisability_acquired, overwrite=TRUE)
