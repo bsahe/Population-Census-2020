@@ -30,22 +30,28 @@ provSex <- dbGetQuery(mydb, "SELECT province, sex,
 
 #Table:3:1:Population living in Private households by ethic origin and sex,Province and urban-rural residence.
 tab3_1EthnicOrigin <- dbGetQuery(mydb, "SELECT province,area_council,urban_rural,sex,ethnicity, hhld_type,
-                              round(sum(province_factor)) as population
+                              round(sum(ac_factor)) as population
                               FROM person
                               WHERE can_enumerate = 1
                               GROUP BY province, urban_rural, area_council, ethnicity, hhld_type") 
 
 
+
+
+
+
+
+
 #Table:3;2;Male population living in private households by ethic origin and sex,province and urban-rural residence.
 tab3_2EthnicMalePop <- dbGetQuery(mydb, "SELECT province,area_council,urban_rural,totmale,ethnicity,hhld_type,
-                              round(sum(province_factor)) as population
+                              round(sum(ac_factor)) as population
                               FROM person
                               WHERE can_enumerate = 1
                               GROUP BY province, urban_rural, area_council, ethnicity,totmale,hhld_type") 
 
 #Table: 3:3: Female population living in private households by ethic origin and sex,province and urban-rural residence
 tab3_3EthnicFemalePop <- dbGetQuery(mydb, "SELECT province,area_council,urban_rural,totfemale,ethnicity,hhld_type,
-                              round(sum(province_factor)) as population
+                              round(sum(ac_factor)) as population
                               FROM person
                               WHERE can_enumerate = 1
                               GROUP BY province, urban_rural, area_council, ethnicity,totfemale,hhld_type") 
@@ -53,28 +59,28 @@ tab3_3EthnicFemalePop <- dbGetQuery(mydb, "SELECT province,area_council,urban_ru
 
 #Table:3:4: Population living in Private household by ethic origin,5-year age groups and sex
 tab3_4Ethnic5yearAgeGrp <- dbGetQuery(mydb, "SELECT province,area_council,urban_rural,age_5yr_grp_80,ethnicity,hhld_type,sex,
-                              round(sum(province_factor)) as population
+                              round(sum(ac_factor)) as population
                               FROM person
                               WHERE can_enumerate = 1
                               GROUP BY province, urban_rural, area_council, ethnicity,age_5yr_grp_80,hhld_type,sex") 
 
 #Table:3:5: Total population by denominations and area council by province and urban-rural residence.
 tab3_5Religion <- dbGetQuery(mydb, "SELECT province,area_council,urban_rural,religion,hhld_type,sex,
-                              round(sum(province_factor)) as population
+                              round(sum(ac_factor)) as population
                               FROM person
                               WHERE can_enumerate = 1
                               GROUP BY province, urban_rural, area_council,religion,sex,hhld_type") 
 
 #Table: 3:6: Male Population by denominations and area council by province and urban-rural residence.
 tab3_6ReligionMale <- dbGetQuery(mydb, "SELECT province,area_council,urban_rural,religion,totmale,hhld_type,
-                              round(sum(province_factor)) as population
+                              round(sum(ac_factor)) as population
                               FROM person
                               WHERE can_enumerate = 1
                               GROUP BY province, urban_rural, area_council,religion,totmale,hhld_type") 
 
 #Table:3:7: Female Population by denominations and area council by province and urban-rural residence.
 tab3_7ReligionFemale <- dbGetQuery(mydb, "SELECT province,area_council,urban_rural,religion,totfemale,hhld_type,
-                              round(sum(province_factor)) as population
+                              round(sum(ac_factor)) as population
                               FROM person
                               WHERE can_enumerate = 1
                               GROUP BY province, urban_rural, area_council,religion,totfemale,hhld_type") 
@@ -88,14 +94,14 @@ tab3_8Religion5yearAgeGroup <- dbGetQuery(mydb, "SELECT province,religion,age_5y
 
 #Table:3:9: Population living in Private households by citizenship and sex,area council by province and urban-rural residence.
 tab3_9Citizenship <- dbGetQuery(mydb, "SELECT province,area_council,urban_rural,citizenship,sex,hhld_type,
-                              round(sum(province_factor)) as population
+                              round(sum(ac_factor)) as population
                               FROM person
                               WHERE can_enumerate = 1
                               GROUP BY province, urban_rural, area_council,citizenship,sex,hhld_type") 
 
 #Table:3:10: Population living in private households by 5-year age groups,sex and citizenship
 tab3_10CitizenshipBy5yearAgeGroup <- dbGetQuery(mydb, "SELECT province,area_council,urban_rural,citizenship,sex,age_5yr_grp_80,hhld_type,
-                              round(sum(province_factor)) as population
+                              round(sum(ac_factor)) as population
                               FROM person
                               WHERE can_enumerate = 1
                               GROUP BY province, urban_rural, area_council,citizenship,sex,age_5yr_grp_80,hhld_type") 
@@ -109,7 +115,7 @@ tab3_11NonCitizenship <- dbGetQuery(mydb, "SELECT province,other_citizenship,sex
 
 #Table :3:12: Total registered births in private households by sex and area council by province and urban-rural residence.
 tab3_12RegisteredBirths <- dbGetQuery(mydb, "SELECT province,urban_rural,area_council,sex,birth_certificate,
-                              round(sum(province_factor)) as population
+                              round(sum(ac_factor)) as population
                               FROM person
                               WHERE can_enumerate = 1
                               GROUP BY province,urban_rural,area_council,birth_certificate,sex")
@@ -118,14 +124,14 @@ tab3_12RegisteredBirths <- dbGetQuery(mydb, "SELECT province,urban_rural,area_co
 
 #Table:3:13: Total population living in private households with valid National ID card by sex and area council by province and urban-rural residence.
 tab3_13NationalIDCard <- dbGetQuery(mydb, "SELECT province,urban_rural,area_council,sex,national_id,hhld_type,
-                              round(sum(province_factor)) as population
+                              round(sum(ac_factor)) as population
                               FROM person
                               WHERE can_enumerate = 1
                               GROUP BY province,urban_rural,area_council,sex,national_id,hhld_type")
 
 #Table:3:14: Total population living in Private households with valid Electoral card by sex and area council by province and urban-rural residence.
 tab3_14ElectrolCard <- dbGetQuery(mydb, "SELECT province,urban_rural,area_council,sex,national_id,hhld_type,
-                              round(sum(province_factor)) as population
+                              round(sum(ac_factor)) as population
                               FROM person
                               WHERE can_enumerate = 1
                               GROUP BY province,urban_rural,area_council,sex,national_id,hhld_type")
@@ -137,12 +143,35 @@ tab3_15MaritalStatusandSex <- dbGetQuery(mydb, "SELECT province,urban_rural,sex,
                               WHERE can_enumerate = 1
                               GROUP BY province,urban_rural,sex,marital_status,hhld_type")
 
+
 #Table:3:16: Type of legal marriage by sex, area council by province and urban-rural residence.
-tab3_16LegalMarriageBySex <- dbGetQuery(mydb, "SELECT province,area_council,urban_rural,sex,custMarriage_1,custMarriage_2,custMarriage_3,hhld_type,
-                              round(sum(province_factor)) as population
+tab3_16LegalMarriageBySex <- dbGetQuery(mydb, "SELECT province,area_council,urban_rural,sex,marital_status, custMarriage__1, custMarriage__2, custMarriage__3,hhld_type,
+                              round(sum(ac_factor)) as population
                               FROM person
                               WHERE can_enumerate = 1
-                              GROUP BY province, area_council, urban_rural,sex,custMarriage_1, custMarriage_2, custMarriage_3,hhld_type")
+                              GROUP BY province, area_council, urban_rural,sex,custMarriage__1, custMarriage__2, custMarriage__3,marital_status, hhld_type")
+
+#Table:3:17: Registered church marriage by sex, Area council by province and urban rural residence
+tab3_17ChurchMarriageBySex <- dbGetQuery(mydb, "SELECT province,area_council,urban_rural,sex,hhld_type,
+                                                ROUND(SUM(CASE WHEN hhld_type = 'Private households' THEN ac_factor ELSE 0 END)) as privateHouseholds,
+                                                ROUND(SUM(CASE WHEN marital_status = 'Legally  married' THEN ac_factor ELSE 0 END)) as maritalStatus,
+                                                ROUND(SUM(CASE WHEN custMarriage__2 = 1 THEN ac_factor ELSE 0 END)) as church,
+                                                ROUND(SUM(CASE WHEN marriage_registration = 'Yes' THEN ac_factor ELSE 0 END)) as registered
+                                               FROM person
+                              WHERE can_enumerate = 1
+                              GROUP BY province, area_council, urban_rural, sex, hhld_type")
+
+#Table:3:18: Total population 15 years and older by marital status, 5 year age and sex, Area Council by province and urban rural
+tab3_18MaritalStatus15yrsBy5yr <- dbGetQuery(mydb, "SELECT province,area_council,urban_rural,sex,hhld_type,
+                                                ROUND(SUM(CASE WHEN hhld_type = 'Private households' THEN ac_factor ELSE 0 END)) as privateHouseholds,
+                                                ROUND(SUM(CASE WHEN marital_status = 'Legally  married' THEN ac_factor ELSE 0 END)) as maritalStatus,
+                                                ROUND(SUM(CASE WHEN custMarriage__2 = 1 THEN ac_factor ELSE 0 END)) as church,
+                                                ROUND(SUM(CASE WHEN marriage_registration = 'Yes' THEN ac_factor ELSE 0 END)) as registered
+                                               FROM person
+                              WHERE can_enumerate = 1
+                              GROUP BY province, area_council, urban_rural, sex, hhld_type")
+
+
 
 
 
