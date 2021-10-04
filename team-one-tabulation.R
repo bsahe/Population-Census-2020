@@ -95,11 +95,28 @@ residAgeGrpSexPov <- reAgeGrpSex %>%
 
 
 ##Table 2.6: Usual resident population by single age and sex, and province
-resdPopSex <- dbGetQuery(mydb, "SELECT age,sex,residence,province,
-                                      round(sum(province_factor)) as population
+resdPopSexProv <- dbGetQuery(mydb, "SELECT age,sex,residence,province,
+                                      round(sum(ac_factor)) as population
                                       FROM person
                                       WHERE can_enumerate = 1
                          GROUP BY age,sex,residence,province") #Residenc population by sex, single age and province.\
+
+resdPopSexAc <- dbGetQuery(mydb, "SELECT age,sex,residence,area_council,
+                                      round(sum(ac_factor)) as population
+                                      FROM person
+                                      WHERE can_enumerate = 1
+                         GROUP BY age,sex,residence,area_council") 
+
+
+resdPopSexPov <- resdPopSexProv %>%
+  filter(population != "NA") %>%
+  pivot_wider(names_from = residence, values_from = population, values_fill = 0) %>%
+  ungroup()
+
+resdPopSexAcPov <- resdPopSexAc %>%
+  filter(population != "NA") %>%
+  pivot_wider(names_from = residence, values_from = population, values_fill = 0) %>%
+  ungroup()
 
 #### Demography ####
 
