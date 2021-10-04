@@ -107,25 +107,36 @@ healthhearing <- dbGetQuery(mydb,"SELECT hearing, sex,area_council,urban_rural,a
                            group by area_council,sex, urban_rural,age_5yr_grp_80 ")
 
 
-causeOfdiffHearing <- dbGetQuery(mydb,"SELECT cause_of_diff_hearing,sex,age_5yr_grp_80,
+causeOfdiffHearing <- dbGetQuery(,"SELECT cause_of_diff_hearing,sex,age_groupe_5_yr,
                            round(sum(province_factor)) as population
                            FROM person
                            where can_enumerate= 1
-                           group by sex,age_5yr_grp_80 ")
+                           group by sex, age_groupe_5_yr")
 
 #walking
 
-healthwalking <- dbGetQuery(mydb,"SELECT walking, sex,area_council,urban_rural,age_5yr_grp_80,
+healthwalking <- dbGetQuery(mydb,"SELECT walking, sex,area_council,urban_rural,age_groupe_5_yr,
                            round(sum(province_factor)) as population
                            FROM person
                            where can_enumerate= 1
-                           group by area_council,sex, urban_rural,age_5yr_grp_80 ")
+                           group by area_council,sex, urban_rural,age_groupe_5_yr")
 
 causeOfdiffwalking <- dbGetQuery(mydb,"SELECT cause_of_diff_walking,sex,age_5yr_grp_80,
                            round(sum(province_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by sex,age_5yr_grp_80 ")
+
+#filter
+walkingDisability <- dbGetQuery(mydb, "SELECT province, area_council, urban_rural,
+                                            ROUND(SUM(CASE WHEN walking='Yes, lots of difficulty' THEN ac_factor ELSE 0 END)) as yesLotsofDifficulty,                
+                                            ROUND(SUM(CASE WHEN walking='Yes, some difficulty' THEN ac_factor ELSE 0 END)) as yesSomeDifficulty,
+                                            ROUND(SUM(CASE WHEN walking='No, no difficulty' THEN ac_factor ELSE 0 END)) as noNoDifficulty,
+                                            ROUND(SUM(CASE WHEN walking='Cannot do at all' THEN ac_factor ELSE 0 END)) as cannotDoAtAll
+                                      FROM person
+                                      WHERE can_enumerate = 1
+                                      GROUP BY province, area_council, urban_rural
+                                ")
 
 #remembering
 
