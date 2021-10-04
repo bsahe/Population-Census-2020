@@ -61,17 +61,43 @@ livestock <- dbGetQuery(mydb, "SELECT household.area_council,
                         ")
 #seeing
 
-healthSeeing <- dbGetQuery(mydb,"SELECT seeing, sex,area_council,urban_rural,age_5yr_grp_80,
+healthSeeing <- dbGetQuery(mydb,"SELECT seeing, sex,area_council,urban_rural,age,
                            round(sum(province_factor)) as population
                            FROM person
                            where can_enumerate= 1
-                           group by area_council,sex, urban_rural,age_5yr_grp_80 ")
+                           group by area_council,sex, urban_rural,age_5yr_grp_70 ")
 
-causeOfdiffseeing <- dbGetQuery(mydb,"SELECT cause_of_diff_seeing,sex,age_5yr_grp_80,
+causeOfdiffseeing <- dbGetQuery(mydb,"SELECT cause_of_diff_seeing,sex,age,
                            round(sum(province_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by sex,age_5yr_grp_80 ")
+
+page<- dbGetQuery(mydb,"SELECT * FROM person")
+page$age_groupe_5_yr <-""
+person <- page %>% 
+  mutate(
+    # Create categories
+    age_group_5_yr = dplyr::case_when(
+      age >= 0 & age < 5  ~ "0-4",
+      age >= 5 & age < 10 ~ "5-9",
+      age >= 10 & age < 15 ~ "10-14",
+      age >= 15 & age < 20 ~ "15-19",
+      age >= 20 & age < 25 ~ "20-24",
+      age >= 25 & age < 30 ~ "25-29",
+      age >= 30 & age < 35 ~ "30-34",
+      age >= 35 & age < 40 ~ "35-39",
+      age >= 40 & age < 45 ~ "40-44",
+      age >= 45 & age < 50 ~ "45-49",
+      age >= 50 & age < 55 ~ "50-54",
+      age >= 55 & age < 60 ~ "55-59",
+      age >= 60 & age < 65 ~ "60-64",
+      age >= 65 & age < 70 ~ "65-69",
+      
+      
+      age >= 70           ~ "70 +"
+    ),
+    )
 #hearing
 
 healthhearing <- dbGetQuery(mydb,"SELECT hearing, sex,area_council,urban_rural,age_5yr_grp_80,
@@ -180,6 +206,6 @@ livestockpivot <- livestock %>%
   ungroup()
 
 #### Write computed tables to teams SQLite database #### 
-dbWriteTable(t1, "provPop", provPop, overwrite=TRUE)
+dbWriteTable(t4, "provPop", provPop, overwrite=TRUE)
 dbWriteTable(t1, "acPop", acPop, overwrite=TRUE)
 dbWriteTable(t1, "livestockpivot", livestockpivot, overwrite=TRUE)
