@@ -28,6 +28,24 @@ provPop <- dbGetQuery(mydb, "SELECT province, hhld_type,
                              WHERE can_enumerate = 1
                              GROUP BY province, hhld_type ") #Do not remove NAs. 
 
+##Table 1.1: Total population by Area Council, Vanuatu
+areaConcilPopSex <- dbGetQuery(mydb, "SELECT area_council, sex, hhld_type, 
+                                    round(sum(ac_factor)) as population
+                             FROM person
+                             WHERE can_enumerate = 1
+                             GROUP BY area_council, sex ") 
+
+areaCouncilPopAge <- dbGetQuery(mydb, "SELECT area_council, age_5yr_grp_80, 
+                                    round(sum(ac_factor)) as population
+                             FROM person
+                             WHERE can_enumerate = 1
+                             GROUP BY area_council, age_5yr_grp_80")
+
+dbWriteTable(t1, "areaConcilPopSex", areaConcilPopSex, overwrite=TRUE)
+dbWriteTable(t1, "areaCouncilPopAge", areaCouncilPopAge, overwrite=TRUE)
+
+write.csv(areaConcilPopSex,"C:\\Census 2020\\acPopSex.csv", row.names = FALSE)
+write.csv(areaCouncilPopAge,"C:\\Census 2020\\acPopAge.csv", row.names = FALSE)
 ##Table 1.2: Total population by place of residence and sex, and number of people living in households by household type
 residPopProv <- dbGetQuery(mydb, "SELECT residence, sex, hhld_type, area_council, urban_rural, 
                                     round(sum(ac_factor)) as population
@@ -127,10 +145,10 @@ bioMotherpop <- dbGetQuery(mydb, "SELECT age_5yr_grp_80, province, birth_mother_
                                                WHERE can_enumerate = 1
                                                GROUP by age_5yr_grp_80, province, birth_mother_alive") #population by 5 year age, Biological Mother still Alive
 
-#bioMomProv <- bioMotherpop %>%
-# filter(population != "NA") %>%
-# pivot_wider(names_from = birth_mother_alive, values_from = population, values_fill = 0) %>%
-#ungroup()
+bioMomProv <- bioMotherpop %>%
+ filter(population != "NA") %>%
+ pivot_wider(names_from = birth_mother_alive, values_from = population, values_fill = 0) %>%
+ ungroup()
 
 
 ##Table8.1.2: Total Population by 5-year age group, whether biological father is still alive and by province 
