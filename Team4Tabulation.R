@@ -418,8 +418,8 @@ livestockpivot <- livestock %>%
 
 #### Write computed tables to teams SQLite database #### 
 dbWriteTable(t4, "provPop", provPop, overwrite=TRUE)
-dbWriteTable(t1, "acPop", acPop, overwrite=TRUE)
-dbWriteTable(t1, "livestockpivot", livestockpivot, overwrite=TRUE)
+dbWriteTable(t4, "acPop", acPop, overwrite=TRUE)
+dbWriteTable(t4, "livestockpivot", livestockpivot, overwrite=TRUE)
 
 dbWriteTable(t4, "healthSeeing", healthSeeing, overwrite=TRUE)
 write.csv(healthSeeing, file = "healthSeeing.csv")
