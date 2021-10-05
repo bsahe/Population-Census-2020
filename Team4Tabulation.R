@@ -20,13 +20,12 @@ t4 <- dbConnect(RSQLite::SQLite(), "data/open/team4/team4.SQLite")
 
 #### Read data from SQLite database and run summary ####
 provPop <- dbGetQuery(mydb, "SELECT province, 
-                                    sum(province_factor) as population
-                                    
-                                    
+                             sum(ac_factor) as population
                              FROM person
                              WHERE can_enumerate = 1
                              GROUP BY province ")
-provsex <- dbGetQuery(mydb, "SELECT province, sex, round(sum(province_factor)) as population
+
+provsex <- dbGetQuery(mydb, "SELECT province, sex, round(sum(ac_factor)) as population
                              FROM person
                              WHERE can_enumerate = 1
                              GROUP BY province, sex ")
@@ -93,7 +92,7 @@ person <- page %>%
 
 
 healthSeeing <- dbGetQuery(mydb,"SELECT seeing, sex,area_council,urban_rural,age,
-                           round(sum(province_factor)) as population
+                           round(sum(ac_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by area_council,sex, urban_rural,age ")
@@ -101,7 +100,7 @@ healthSeeing <- dbGetQuery(mydb,"SELECT seeing, sex,area_council,urban_rural,age
 #Table 5.2 difficulty in seeing
 
 causeOfdiffseeing <- dbGetQuery(mydb,"SELECT cause_of_diff_seeing,sex,age,
-                           round(sum(province_factor)) as population
+                           round(sum(ac_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by sex,age_5yr_grp_80 ")
