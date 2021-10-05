@@ -140,7 +140,7 @@ seeingDisability_oldAge <- dbGetQuery(mydb, "SELECT province, area_council, urba
 #Table 5.3 hearing
 
 healthhearing <- dbGetQuery(mydb,"SELECT hearing, sex,area_council,urban_rural,age_5yr_grp_80,
-                           round(sum(province_factor)) as population
+                           round(sum(ac_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by area_council,sex, urban_rural,age_5yr_grp_80 ")
@@ -148,7 +148,7 @@ healthhearing <- dbGetQuery(mydb,"SELECT hearing, sex,area_council,urban_rural,a
 #Table 5.4 difficulty in hearing
 
 causeOfdiffHearing <- dbGetQuery(mydb,"SELECT cause_of_diff_hearing,sex,age,
-                           round(sum(province_factor)) as population
+                           round(sum(ac_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by sex, age")
@@ -187,7 +187,7 @@ hearingDisability_oldAge <- dbGetQuery(mydb, "SELECT province, area_council, urb
 #Table 5.5 walking
 
 healthwalking <- dbGetQuery(mydb,"SELECT walking, sex,area_council,urban_rural,age,
-                           round(sum(province_factor)) as population
+                           round(sum(ac_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by area_council,sex, urban_rural,age")
@@ -195,7 +195,7 @@ healthwalking <- dbGetQuery(mydb,"SELECT walking, sex,area_council,urban_rural,a
 #Table 5.6 difficulty in walking
 
 causeOfdiffwalking <- dbGetQuery(mydb,"SELECT cause_of_diff_walking,sex,age_5yr_grp_80,
-                           round(sum(province_factor)) as population
+                           round(sum(ac_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by sex,age_5yr_grp_80 ")
@@ -235,7 +235,7 @@ walkingDisability_oldAge <- dbGetQuery(mydb, "SELECT province, area_council, urb
 #Table 5.7 remembering
 
 healthremembering <- dbGetQuery(mydb,"SELECT remembering, sex,area_council,urban_rural,age_5yr_grp_80,
-                           round(sum(province_factor)) as population
+                           round(sum(ac_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by area_council,sex, urban_rural,age_5yr_grp_80 ")
@@ -243,7 +243,7 @@ healthremembering <- dbGetQuery(mydb,"SELECT remembering, sex,area_council,urban
 #Table 5.8 difficulty in remembering 
 
 causeOfdifflearning <- dbGetQuery(mydb,"SELECT cause_of_diff_learning,sex,age_5yr_grp_80,
-                           round(sum(province_factor)) as population
+                           round(sum(ac_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by sex,age_5yr_grp_80 ")
@@ -282,7 +282,7 @@ rememberingDisability_oldAge <- dbGetQuery(mydb, "SELECT province, area_council,
 #Table 5.9 selfcare
 
 healthselfcare <- dbGetQuery(mydb,"SELECT selfcare, sex,area_council,urban_rural,age_5yr_grp_80,
-                           round(sum(province_factor)) as population
+                           round(sum(ac_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by area_council,sex, urban_rural,age_5yr_grp_80 ")
@@ -290,7 +290,7 @@ healthselfcare <- dbGetQuery(mydb,"SELECT selfcare, sex,area_council,urban_rural
 #Table 5.10 difficulty in selfcare
 
 causeOfdiffselfcare <- dbGetQuery(mydb,"SELECT cause_of_diff_selfcare,sex,age_5yr_grp_80,
-                           round(sum(province_factor)) as population
+                           round(sum(ac_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by sex,age_5yr_grp_80 ")
@@ -328,7 +328,7 @@ selfcareDisability_oldAge <- dbGetQuery(mydb, "SELECT province, area_council, ur
 #Table 5.11 communication
 
 healthcommunication <- dbGetQuery(mydb,"SELECT communication, sex,area_council,urban_rural,age_5yr_grp_80,
-                           round(sum(province_factor)) as population
+                           round(sum(ac_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by area_council,sex, urban_rural,age_5yr_grp_80 ")
@@ -337,7 +337,7 @@ healthcommunication <- dbGetQuery(mydb,"SELECT communication, sex,area_council,u
 
 
 causeOfdiffcommunication <- dbGetQuery(mydb,"SELECT cause_of_diff_communicating,sex,age_5yr_grp_80,
-                           round(sum(province_factor)) as population
+                           round(sum(ac_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by sex,age_5yr_grp_80 ")
@@ -374,37 +374,37 @@ communicationDisability_oldAge <- dbGetQuery(mydb, "SELECT province, area_counci
 #consumption1
 
 consumption1 <- dbGetQuery(mydb,"SELECT consumption__1, sex,area_council,urban_rural,age,
-                           round(sum(province_factor)) as population
+                           round(sum(ac_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by area_council,sex, urban_rural,age ")
 #consumption2
 consumption2 <- dbGetQuery(mydb,"SELECT consumption__2, sex,area_council,urban_rural,age,
-                           round(sum(province_factor)) as population
+                           round(sum(ac_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by area_council,sex, urban_rural,age ")
 #consumption3
 consumption3 <- dbGetQuery(mydb,"SELECT consumption__3, sex,area_council,urban_rural,age,
-                           round(sum(province_factor)) as population
+                           round(sum(ac_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by area_council,sex, urban_rural,age ")
 #consumption4
 consumption4 <- dbGetQuery(mydb,"SELECT consumption__4, sex,area_council,urban_rural,age,
-                           round(sum(province_factor)) as population
+                           round(sum(ac_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by area_council,sex, urban_rural,age ")
 #treatedBetnets
 treatedBetnets <- dbGetQuery(mydb,"SELECT treated_bednets, sex,area_council,urban_rural,
-                           round(sum(province_factor)) as population
+                           round(sum(ac_factor)) as population
                            FROM person
                            where can_enumerate= 1
                            group by area_council,sex, urban_rural ")
 
 sleptUnderBetnets <- dbGetQuery(mydb,"SELECT slept_under_bednets,sex, area_council,urban_rural,
-                                round(sum(province_factor)) as population
+                                round(sum(ac_factor)) as population
                                 FROM person
                                 where can_enumerate= 1
                                 group by area_council,sex,urban_rural")
