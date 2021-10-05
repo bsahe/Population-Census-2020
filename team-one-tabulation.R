@@ -23,7 +23,7 @@ t1 <- dbConnect(RSQLite::SQLite(), "data/open/team1/team1.SQLite")
 
 ##Table 1.1: Total population by Province and Census year, population density, Vanuatu: 1967-2020
 provPop <- dbGetQuery(mydb, "SELECT province, hhld_type, 
-                                    round(sum(province_factor)) as population
+                                    round(sum(ac_factor)) as population
                              FROM person
                              WHERE can_enumerate = 1
                              GROUP BY province, hhld_type ") #Do not remove NAs. 
@@ -35,17 +35,18 @@ areaConcilPopSex <- dbGetQuery(mydb, "SELECT area_council, sex, hhld_type,
                              WHERE can_enumerate = 1
                              GROUP BY area_council, sex ") 
 
-areaCouncilPopAge <- dbGetQuery(mydb, "SELECT area_council, age_5yr_grp_80, 
-                                    round(sum(ac_factor)) as population
-                             FROM person
-                             WHERE can_enumerate = 1
-                             GROUP BY area_council, age_5yr_grp_80")
+#areaCouncilPopAge <- dbGetQuery(mydb, "SELECT area_council, age_5yr_grp_80, 
+#                                   round(sum(ac_factor)) as population
+#                             FROM person
+#                             WHERE can_enumerate = 1
+#                             GROUP BY area_council, age_5yr_grp_80")
 
-dbWriteTable(t1, "areaConcilPopSex", areaConcilPopSex, overwrite=TRUE)
-dbWriteTable(t1, "areaCouncilPopAge", areaCouncilPopAge, overwrite=TRUE)
+#dbWriteTable(t1, "areaConcilPopSex", areaConcilPopSex, overwrite=TRUE)
+#dbWriteTable(t1, "areaCouncilPopAge", areaCouncilPopAge, overwrite=TRUE)
 
-write.csv(areaConcilPopSex,"C:\\Census 2020\\acPopSex.csv", row.names = FALSE)
-write.csv(areaCouncilPopAge,"C:\\Census 2020\\acPopAge.csv", row.names = FALSE)
+#write.csv(areaConcilPopSex,"C:\\Census 2020\\acPopSex.csv", row.names = FALSE)
+#write.csv(areaCouncilPopAge,"C:\\Census 2020\\acPopAge.csv", row.names = FALSE)
+
 ##Table 1.2: Total population by place of residence and sex, and number of people living in households by household type
 residPopProv <- dbGetQuery(mydb, "SELECT residence, sex, hhld_type, area_council, urban_rural, 
                                     round(sum(ac_factor)) as population
@@ -140,7 +141,7 @@ resdPopSexAcPov <- resdPopSexAc %>%
 
 ##Table 8.1.1: Total population by 5-year age group, whether biological mother is still alive and by province 
 bioMotherpop <- dbGetQuery(mydb, "SELECT age_5yr_grp_80, province, birth_mother_alive,
-                                               round (sum (province_factor)) as population
+                                               round (sum (ac_factor)) as population
                                                FROM person
                                                WHERE can_enumerate = 1
                                                GROUP by age_5yr_grp_80, province, birth_mother_alive") #population by 5 year age, Biological Mother still Alive
@@ -153,7 +154,7 @@ bioMomProv <- bioMotherpop %>%
 
 ##Table8.1.2: Total Population by 5-year age group, whether biological father is still alive and by province 
 bioFatherpop <- dbGetQuery(mydb, "SELECT age_5yr_grp_80, province, father_alive,
-                                               round (sum (province_factor)) as population
+                                               round (sum (ac_factor)) as population
                                                FROM person
                                                WHERE can_enumerate = 1
                                                GROUP by age_5yr_grp_80, province, father_alive") #population by 5 year age, Biological father still Alive
@@ -167,14 +168,14 @@ bioFatherpop <- dbGetQuery(mydb, "SELECT age_5yr_grp_80, province, father_alive,
 ##Table 8.2.1: Female population 15 years and over older by 5-year age group and whether ever given birth by province and urban-rural 
 #Group to check this table for this figures.
 femGivenBirthPop <- dbGetQuery(mydb, "SELECT age_5yr_grp_80,ever_given_birth, totfemale, urban_rural,province, hhld_type,
-                                               round (sum (province_factor)) as population
+                                               round (sum (ac_factor)) as population
                                                FROM person
                                                WHERE can_enumerate = 1
                                                GROUP by age_5yr_grp_80,totfemale, ever_given_birth, urban_rural, province, hhld_type") #Female population 15 years and older, given birth.
 
 ##Table 8.2.2: Female population 15 years and overolder by 5-year age group and total number of children ever born alive by province and urban-rural 
 birthChildAlivePop <- dbGetQuery(mydb, "SELECT age_5yr_grp_80,totfemale,age,ever_given_birth, urban_rural,province, hhld_type,
-                                               round (sum (province_factor)) as population
+                                               round (sum (ac_factor)) as population
                                                FROM person
                                                WHERE can_enumerate = 1
                                                GROUP by age_5yr_grp_80,age,ever_given_birth, urban_rural, province, hhld_type") 
@@ -182,7 +183,7 @@ birthChildAlivePop <- dbGetQuery(mydb, "SELECT age_5yr_grp_80,totfemale,age,ever
 ##Table 8.2.3: Female population 15 years and over older by 5-year age group and total number of children dead by province and urban-rural 
 #Female population 15 years and over older by 5-year age group and total number of children dead by province and urban-rural 
 femBirthChildDeadPop <- dbGetQuery(mydb, "SELECT age_5yr_grp_80, males_died, females_died, age, urban_rural,province, hhld_type,
-                                               round (sum (province_factor)) as population
+                                               round (sum (ac_factor)) as population
                                                FROM person
                                                WHERE can_enumerate = 1
                                                GROUP BY age_5yr_grp_80, males_died, females_died, age, urban_rural, province, hhld_type") 
@@ -192,7 +193,7 @@ femBirthChildDeadPop <- dbGetQuery(mydb, "SELECT age_5yr_grp_80, males_died, fem
 
 femBirthChildDeadPop <- dbGetQuery(mydb, "SELECT  last_child_born_mm, last_born_sex, province, sex,hhld_type,
                                                 urban_rural,last_child_born_yrs,
-                                               round (sum (province_factor)) as population
+                                               round (sum (ac_factor)) as population
                                                FROM person
                                                WHERE can_enumerate = 1
                                                GROUP BY  last_child_born_mm, last_born_sex, province, sex,
@@ -200,35 +201,36 @@ femBirthChildDeadPop <- dbGetQuery(mydb, "SELECT  last_child_born_mm, last_born_
 
 
 ### Trial ####
-provSex <- dbGetQuery(mydb, "SELECT province,
-                                    sex,
-                                    round(sum(province_factor))as population 
-                              FROM person
-                              WHERE can_enumerate = 1
-                              GROUP BY province, sex") #Total population by provinces
 
-acPop <- dbGetQuery(mydb, "SELECT area_council,
-                                  sum(ac_factor) as population
-                           FROM person
-                           WHERE can_enumerate = 1
-                           GROUP BY area_council")
+#provSex <- dbGetQuery(mydb, "SELECT province,
+#                                    sex,
+#                                    round(sum(province_factor))as population 
+#                              FROM person
+#                              WHERE can_enumerate = 1
+#                              GROUP BY province, sex") #Total population by provinces
 
-pop_hh <- dbGetQuery(mydb, "SELECT province,
-                                   round(sum(hhld_ac_factor * hhsize)) as population
-                            FROM household
-                            WHERE can_enumerate = 1
-                            GROUP BY province ")
+#acPop <- dbGetQuery(mydb, "SELECT area_council,
+#                                  sum(ac_factor) as population
+#                           FROM person
+#                           WHERE can_enumerate = 1
+#                           GROUP BY area_council")
+
+#pop_hh <- dbGetQuery(mydb, "SELECT province,
+#                                   round(sum(hhld_ac_factor * hhsize)) as population
+#                            FROM household
+#                            WHERE can_enumerate = 1
+#                            GROUP BY province ")
 
 
-livestock <- dbGetQuery(mydb, "SELECT household.area_council,
-                                      livestock.livestock_id,
-                                      round(sum(household.hhld_ac_factor * livestock.num_livestock)) as totallivestock  
-                              FROM household
-                              INNER JOIN livestock ON household.interview_key = livestock.interview_key
-                              WHERE household.can_enumerate = 1
-                              GROUP BY household.area_council, livestock.livestock_id
-                              ORDER BY household.island
-                        ")
+#livestock <- dbGetQuery(mydb, "SELECT household.area_council,
+#                                      livestock.livestock_id,
+#                                      round(sum(household.hhld_ac_factor * livestock.num_livestock)) as totallivestock  
+#                              FROM household
+#                              INNER JOIN livestock ON household.interview_key = livestock.interview_key
+#                              WHERE household.can_enumerate = 1
+#                              GROUP BY household.area_council, livestock.livestock_id
+#                             ORDER BY household.island
+#                        ")
 
 ####Using pivot_wider to cross-tabulate with 2 variables####
 livestockpivot <- livestock %>%
