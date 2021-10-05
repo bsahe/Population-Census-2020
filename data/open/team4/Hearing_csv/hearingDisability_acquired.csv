@@ -1,0 +1,65 @@
+"","province","area_council","urban_rural","yesLotsofDifficulty","yesSomeDifficulty","noNoDifficulty","cannotDoAtAll"
+"1","Malampa","central malekula",2,0,3,21,0
+"2","Malampa","north ambrym",2,0,6,11,0
+"3","Malampa","north east malekula",2,0,2,13,1
+"4","Malampa","north west malekula",2,0,1,11,1
+"5","Malampa","paama",2,0,2,11,0
+"6","Malampa","south east ambrym",2,0,3,17,0
+"7","Malampa","south east malekula",2,0,0,9,0
+"8","Malampa","south malekula",2,0,8,17,0
+"9","Malampa","south west malekula",2,0,2,2,0
+"10","Malampa","west ambrym",2,0,6,10,1
+"11","Penama","central pentecost 1",2,0,10,31,0
+"12","Penama","central pentecost 2",2,0,4,10,0
+"13","Penama","east ambae",2,0,3,5,0
+"14","Penama","north ambae",2,0,3,11,0
+"15","Penama","north maewo",2,0,0,2,0
+"16","Penama","north pentecost",2,0,6,30,0
+"17","Penama","south ambae",2,0,0,2,0
+"18","Penama","south maewo",2,0,2,4,0
+"19","Penama","south pentecost",2,0,2,16,0
+"20","Penama","west ambae",2,0,5,20,1
+"21","Sanma","canal - fanafo",2,0,5,11,1
+"22","Sanma","east malo",2,0,3,18,0
+"23","Sanma","east santo",2,0,1,10,0
+"24","Sanma","luganville",1,0,15,79,2
+"25","Sanma","north santo",2,0,4,5,0
+"26","Sanma","north west santo",2,0,0,2,0
+"27","Sanma","south east santo",2,0,2,13,0
+"28","Sanma","south santo",2,0,26,44,0
+"29","Sanma","west malo",2,0,0,5,0
+"30","Sanma","west santo",2,0,3,9,0
+"31","Shefa","emau",2,0,0,1,0
+"32","Shefa","erakor",2,0,9,56,0
+"33","Shefa","eratap",2,0,3,20,0
+"34","Shefa","eton",2,0,1,9,0
+"35","Shefa","ifira",2,0,2,6,0
+"36","Shefa","makimae",2,0,1,1,0
+"37","Shefa","malorua",2,0,1,12,0
+"38","Shefa","mele",2,0,2,31,0
+"39","Shefa","nguna",2,0,4,4,0
+"40","Shefa","north efate",2,0,0,6,0
+"41","Shefa","north tongoa",2,0,0,1,0
+"42","Shefa","pango",2,0,1,3,0
+"43","Shefa","port vila",1,0,16,150,2
+"44","Shefa","south epi",2,0,0,1,0
+"45","Shefa","tongariki",2,0,0,4,0
+"46","Shefa","varisu",2,0,0,4,0
+"47","Shefa","vermali",2,0,0,1,0
+"48","Shefa","vermaul",2,0,0,2,0
+"49","Tafea","aneityum",2,0,1,6,0
+"50","Tafea","aniwa",2,0,0,1,0
+"51","Tafea","futuna",2,0,1,0,0
+"52","Tafea","middle bush tanna",2,0,2,13,0
+"53","Tafea","north erromango",2,0,0,1,0
+"54","Tafea","north tanna",2,0,0,5,0
+"55","Tafea","south tanna",2,0,0,1,0
+"56","Tafea","south west tanna",2,0,3,9,0
+"57","Tafea","west tanna",2,0,6,41,2
+"58","Tafea","whitesands",2,0,2,30,1
+"59","Torba","gaua",2,0,1,2,1
+"60","Torba","merelava",2,0,2,1,0
+"61","Torba","mota",2,0,1,2,0
+"62","Torba","motalava",2,0,4,9,1
+"63","Torba","torres",2,0,4,13,0
+"64","Torba","vanua lava",2,0,2,10,1

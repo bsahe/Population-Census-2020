@@ -1,0 +1,160 @@
+"","slept_under_bednets","sex","area_council","urban_rural","population"
+"1",NA,NA,"aneityum",2,NA
+"2","Yes","Female","aneityum",2,749
+"3","Yes","Male","aneityum",2,788
+"4",NA,"Female","aniwa",2,264
+"5","Yes","Male","aniwa",2,225
+"6","Yes","Female","canal - fanafo",2,2783
+"7",NA,"Male","canal - fanafo",2,3018
+"8",NA,NA,"central malekula",2,NA
+"9","Yes","Female","central malekula",2,3267
+"10","Yes","Male","central malekula",2,3250
+"11","Yes","Female","central pentecost 1",2,1878
+"12","Yes","Male","central pentecost 1",2,1841
+"13",NA,NA,"central pentecost 2",2,NA
+"14","Yes","Female","central pentecost 2",2,2519
+"15","Yes","Male","central pentecost 2",2,2476
+"16",NA,NA,"east ambae",2,NA
+"17",NA,"Female","east ambae",2,1010
+"18","Yes","Male","east ambae",2,1110
+"19","Yes","Female","east malo",2,994
+"20","Yes","Male","east malo",2,1101
+"21",NA,NA,"east santo",2,NA
+"22","Yes","Female","east santo",2,2991
+"23",NA,"Male","east santo",2,3194
+"24",NA,"Female","emau",2,366
+"25",NA,"Male","emau",2,385
+"26",NA,NA,"erakor",2,NA
+"27",NA,"Female","erakor",2,5914
+"28",NA,"Male","erakor",2,6039
+"29",NA,NA,"eratap",2,NA
+"30","Yes","Female","eratap",2,3830
+"31",NA,"Male","eratap",2,3904
+"32",NA,"Female","eton",2,1967
+"33","No","Male","eton",2,2035
+"34",NA,"Female","futuna",2,272
+"35",NA,"Male","futuna",2,311
+"36",NA,NA,"gaua",2,NA
+"37","Yes","Female","gaua",2,1757
+"38","Yes","Male","gaua",2,1721
+"39","Yes","Female","ifira",2,614
+"40",NA,"Male","ifira",2,618
+"41",NA,NA,"luganville",1,NA
+"42","No","Female","luganville",1,8710
+"43",NA,"Male","luganville",1,9049
+"44","Yes","Female","makimae",2,529
+"45","No","Male","makimae",2,591
+"46",NA,NA,"malorua",2,NA
+"47","No","Female","malorua",2,1861
+"48","Yes","Male","malorua",2,1941
+"49",NA,NA,"mele",2,NA
+"50",NA,"Female","mele",2,3195
+"51","No","Male","mele",2,3193
+"52",NA,"Female","merelava",2,339
+"53",NA,"Male","merelava",2,318
+"54",NA,"Female","middle bush tanna",2,3356
+"55",NA,"Male","middle bush tanna",2,3440
+"56",NA,NA,"mota",2,NA
+"57","Yes","Female","mota",2,275
+"58","Yes","Male","mota",2,295
+"59",NA,NA,"motalava",2,NA
+"60","Yes","Female","motalava",2,858
+"61",NA,"Male","motalava",2,855
+"62",NA,"Female","nguna",2,912
+"63","Yes","Male","nguna",2,911
+"64",NA,"Female","north ambae",2,1392
+"65",NA,"Male","north ambae",2,1477
+"66","Yes","Female","north ambrym",2,1850
+"67","No","Male","north ambrym",2,1892
+"68",NA,NA,"north east malekula",2,NA
+"69","Yes","Female","north east malekula",2,3509
+"70","Yes","Male","north east malekula",2,3456
+"71",NA,NA,"north efate",2,NA
+"72","Yes","Female","north efate",2,1825
+"73","Yes","Male","north efate",2,1785
+"74",NA,"Female","north erromango",2,858
+"75",NA,"Male","north erromango",2,968
+"76","Yes","Female","north maewo",2,1461
+"77","Yes","Male","north maewo",2,1473
+"78","Yes","Female","north pentecost",2,3466
+"79","Yes","Male","north pentecost",2,3704
+"80",NA,NA,"north santo",2,NA
+"81","Yes","Female","north santo",2,2513
+"82","Yes","Male","north santo",2,2714
+"83",NA,"Female","north tanna",2,2457
+"84","Yes","Male","north tanna",2,2376
+"85","No","Female","north tongoa",2,788
+"86",NA,"Male","north tongoa",2,821
+"87",NA,NA,"north west malekula",2,NA
+"88","Yes","Female","north west malekula",2,2724
+"89","Yes","Male","north west malekula",2,2851
+"90","Yes","Female","north west santo",2,728
+"91",NA,"Male","north west santo",2,835
+"92","Yes","Female","paama",2,773
+"93",NA,"Male","paama",2,820
+"94",NA,NA,"pango",2,NA
+"95","Yes","Female","pango",2,1181
+"96","Yes","Male","pango",2,1095
+"97",NA,NA,"port vila",1,NA
+"98",NA,"Female","port vila",1,24373
+"99",NA,"Male","port vila",1,24515
+"100","Yes","Female","south ambae",2,547
+"101","Yes","Male","south ambae",2,575
+"102","Yes","Female","south east ambrym",2,966
+"103","Yes","Male","south east ambrym",2,1079
+"104","Yes","Female","south east malekula",2,2501
+"105","Yes","Male","south east malekula",2,2608
+"106",NA,NA,"south east santo",2,NA
+"107","No","Female","south east santo",2,3753
+"108","Yes","Male","south east santo",2,3877
+"109","Yes","Female","south epi",2,790
+"110","No","Male","south epi",2,836
+"111","Yes","Female","south erromango",2,407
+"112","No","Male","south erromango",2,403
+"113","Yes","Female","south maewo",2,994
+"114",NA,"Male","south maewo",2,1023
+"115","Yes","Female","south malekula",2,2256
+"116","Yes","Male","south malekula",2,2370
+"117",NA,NA,"south pentecost",2,NA
+"118",NA,"Female","south pentecost",2,3141
+"119","No","Male","south pentecost",2,3060
+"120","No","Female","south santo",2,4212
+"121","Yes","Male","south santo",2,4471
+"122",NA,"Female","south tanna",2,817
+"123","Yes","Male","south tanna",2,830
+"124","Yes","Female","south west malekula",2,1710
+"125","Yes","Male","south west malekula",2,1701
+"126","Yes","Female","south west tanna",2,3198
+"127",NA,"Male","south west tanna",2,3177
+"128","No","Female","tongariki",2,534
+"129","Yes","Male","tongariki",2,540
+"130","Yes","Female","torres",2,585
+"131","Yes","Male","torres",2,561
+"132",NA,"Female","ureparapara",2,227
+"133","No","Male","ureparapara",2,247
+"134",NA,NA,"vanua lava",2,NA
+"135","Yes","Female","vanua lava",2,1577
+"136","Yes","Male","vanua lava",2,1714
+"137",NA,NA,"varisu",2,NA
+"138","Yes","Female","varisu",2,1008
+"139","Yes","Male","varisu",2,1038
+"140",NA,NA,"vermali",2,NA
+"141",NA,"Female","vermali",2,1249
+"142",NA,"Male","vermali",2,1142
+"143","Yes","Female","vermaul",2,835
+"144","Yes","Male","vermaul",2,827
+"145","Yes","Female","west ambae",2,1168
+"146",NA,"Male","west ambae",2,1295
+"147",NA,NA,"west ambrym",2,NA
+"148","Yes","Female","west ambrym",2,1448
+"149","Yes","Male","west ambrym",2,1467
+"150",NA,NA,"west malo",2,NA
+"151","Yes","Female","west malo",2,1319
+"152","Yes","Male","west malo",2,1390
+"153",NA,"Female","west santo",2,1599
+"154","Yes","Male","west santo",2,1633
+"155",NA,NA,"west tanna",2,NA
+"156","No","Female","west tanna",2,6438
+"157","No","Male","west tanna",2,6474
+"158",NA,"Female","whitesands",2,4035
+"159",NA,"Male","whitesands",2,3873

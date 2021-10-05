@@ -1,0 +1,239 @@
+"","cause_of_diff_hearing","sex","age","population"
+"1",NA,NA,NA,NA
+"2",NA,"Female",0,3956
+"3",NA,"Female",1,4017
+"4",NA,"Female",2,4026
+"5",NA,"Female",3,4164
+"6",NA,"Female",4,4041
+"7",NA,"Female",5,3938
+"8",NA,"Female",6,3978
+"9",NA,"Female",7,3897
+"10",NA,"Female",8,3759
+"11",NA,"Female",9,3338
+"12",NA,"Female",10,3902
+"13",NA,"Female",11,3360
+"14",NA,"Female",12,3213
+"15",NA,"Female",13,3156
+"16",NA,"Female",14,3077
+"17",NA,"Female",15,2984
+"18",NA,"Female",16,3749
+"19",NA,"Female",17,2562
+"20",NA,"Female",18,2452
+"21",NA,"Female",19,2357
+"22",NA,"Female",20,2959
+"23",NA,"Female",21,2502
+"24",NA,"Female",22,2493
+"25",NA,"Female",23,2472
+"26",NA,"Female",24,2577
+"27",NA,"Female",25,2623
+"28",NA,"Female",26,2484
+"29",NA,"Female",27,2465
+"30",NA,"Female",28,2625
+"31",NA,"Female",29,2220
+"32",NA,"Female",30,2320
+"33",NA,"Female",31,2158
+"34",NA,"Female",32,2110
+"35",NA,"Female",33,2220
+"36",NA,"Female",34,2049
+"37",NA,"Female",35,2026
+"38",NA,"Female",36,1852
+"39",NA,"Female",37,1687
+"40",NA,"Female",38,1665
+"41",NA,"Female",39,1271
+"42",NA,"Female",40,1988
+"43",NA,"Female",41,1542
+"44",NA,"Female",42,1404
+"45",NA,"Female",43,1325
+"46",NA,"Female",44,1328
+"47",NA,"Female",45,1555
+"48",NA,"Female",46,1301
+"49",NA,"Female",47,1252
+"50",NA,"Female",48,1469
+"51",NA,"Female",49,924
+"52",NA,"Female",50,1302
+"53",NA,"Female",51,1264
+"54",NA,"Female",52,1130
+"55",NA,"Female",53,922
+"56",NA,"Female",54,912
+"57",NA,"Female",55,870
+"58",NA,"Female",56,1087
+"59",NA,"Female",57,845
+"60",NA,"Female",58,962
+"61",NA,"Female",59,632
+"62",NA,"Female",60,971
+"63",NA,"Female",61,714
+"64",NA,"Female",62,669
+"65",NA,"Female",63,504
+"66",NA,"Female",64,615
+"67",NA,"Female",65,557
+"68",NA,"Female",66,582
+"69",NA,"Female",67,466
+"70",NA,"Female",68,530
+"71",NA,"Female",69,312
+"72",NA,"Female",70,525
+"73",NA,"Female",71,285
+"74",NA,"Female",72,332
+"75",NA,"Female",73,244
+"76",NA,"Female",74,226
+"77",NA,"Female",75,305
+"78",NA,"Female",76,181
+"79",NA,"Female",77,158
+"80","Related to old age","Female",78,251
+"81",NA,"Female",79,119
+"82",NA,"Female",80,218
+"83",NA,"Female",81,119
+"84",NA,"Female",82,98
+"85",NA,"Female",83,63
+"86",NA,"Female",84,64
+"87",NA,"Female",85,74
+"88",NA,"Female",86,64
+"89","Related to old age","Female",87,55
+"90",NA,"Female",88,63
+"91","Acquired","Female",89,44
+"92",NA,"Female",90,71
+"93","Related to old age","Female",91,17
+"94","Related to old age","Female",92,33
+"95","Related to old age","Female",93,15
+"96","Acquired","Female",94,4
+"97",NA,"Female",95,18
+"98","Related to old age","Female",96,12
+"99","Related to old age","Female",97,10
+"100","Related to old age","Female",98,15
+"101",NA,"Female",99,25
+"102",NA,"Female",100,27
+"103",NA,"Female",101,9
+"104",NA,"Female",102,5
+"105","Related to old age","Female",103,4
+"106","Related to old age","Female",104,1
+"107","Related to old age","Female",105,6
+"108","Related to old age","Female",106,1
+"109",NA,"Female",107,5
+"110",NA,"Female",108,3
+"111","Related to old age","Female",110,3
+"112","Related to old age","Female",111,1
+"113",NA,"Female",112,1
+"114",NA,"Female",115,2
+"115","Related to old age","Female",119,3
+"116","Related to old age","Female",120,2
+"117",NA,"Female",123,2
+"118","Related to old age","Female",125,1
+"119",NA,"Female",128,2
+"120",NA,"Female",130,2
+"121",NA,"Female",140,1
+"122",NA,"Female",160,1
+"123",NA,"Male",0,4019
+"124",NA,"Male",1,4349
+"125",NA,"Male",2,4390
+"126",NA,"Male",3,4350
+"127",NA,"Male",4,4288
+"128",NA,"Male",5,4438
+"129",NA,"Male",6,4243
+"130",NA,"Male",7,4060
+"131",NA,"Male",8,4136
+"132",NA,"Male",9,3647
+"133",NA,"Male",10,4260
+"134",NA,"Male",11,3578
+"135",NA,"Male",12,3453
+"136",NA,"Male",13,3444
+"137",NA,"Male",14,3292
+"138",NA,"Male",15,3105
+"139",NA,"Male",16,3856
+"140",NA,"Male",17,2778
+"141",NA,"Male",18,2598
+"142",NA,"Male",19,2537
+"143",NA,"Male",20,2980
+"144",NA,"Male",21,2485
+"145",NA,"Male",22,2587
+"146",NA,"Male",23,2402
+"147",NA,"Male",24,2286
+"148",NA,"Male",25,2644
+"149",NA,"Male",26,2307
+"150",NA,"Male",27,2296
+"151",NA,"Male",28,2550
+"152",NA,"Male",29,2019
+"153",NA,"Male",30,2107
+"154",NA,"Male",31,1932
+"155",NA,"Male",32,1918
+"156",NA,"Male",33,2082
+"157",NA,"Male",34,2025
+"158",NA,"Male",35,2002
+"159",NA,"Male",36,1817
+"160",NA,"Male",37,1779
+"161",NA,"Male",38,1622
+"162",NA,"Male",39,1268
+"163",NA,"Male",40,1932
+"164",NA,"Male",41,1600
+"165",NA,"Male",42,1432
+"166",NA,"Male",43,1302
+"167",NA,"Male",44,1249
+"168",NA,"Male",45,1577
+"169",NA,"Male",46,1341
+"170",NA,"Male",47,1240
+"171",NA,"Male",48,1619
+"172",NA,"Male",49,968
+"173",NA,"Male",50,1294
+"174",NA,"Male",51,1216
+"175",NA,"Male",52,1116
+"176",NA,"Male",53,892
+"177",NA,"Male",54,913
+"178",NA,"Male",55,947
+"179",NA,"Male",56,1013
+"180",NA,"Male",57,840
+"181",NA,"Male",58,876
+"182",NA,"Male",59,679
+"183",NA,"Male",60,947
+"184",NA,"Male",61,647
+"185",NA,"Male",62,728
+"186",NA,"Male",63,512
+"187",NA,"Male",64,547
+"188",NA,"Male",65,514
+"189",NA,"Male",66,536
+"190","Acquired","Male",67,507
+"191","Related to old age","Male",68,536
+"192",NA,"Male",69,319
+"193",NA,"Male",70,437
+"194",NA,"Male",71,297
+"195",NA,"Male",72,344
+"196","Related to old age","Male",73,294
+"197",NA,"Male",74,238
+"198",NA,"Male",75,289
+"199",NA,"Male",76,197
+"200",NA,"Male",77,151
+"201",NA,"Male",78,344
+"202",NA,"Male",79,110
+"203",NA,"Male",80,202
+"204","Related to old age","Male",81,117
+"205",NA,"Male",82,88
+"206",NA,"Male",83,79
+"207",NA,"Male",84,75
+"208",NA,"Male",85,73
+"209","Related to old age","Male",86,50
+"210",NA,"Male",87,58
+"211","Acquired","Male",88,61
+"212",NA,"Male",89,39
+"213",NA,"Male",90,76
+"214","Related to old age","Male",91,18
+"215",NA,"Male",92,19
+"216","Related to old age","Male",93,13
+"217","Related to old age","Male",94,10
+"218",NA,"Male",95,16
+"219","Acquired","Male",96,12
+"220",NA,"Male",97,8
+"221","Related to old age","Male",98,15
+"222",NA,"Male",99,30
+"223",NA,"Male",100,25
+"224","Related to old age","Male",101,8
+"225",NA,"Male",102,4
+"226",NA,"Male",103,3
+"227","Related to old age","Male",104,4
+"228","Acquired","Male",105,2
+"229","Related to old age","Male",106,5
+"230",NA,"Male",107,3
+"231",NA,"Male",108,2
+"232",NA,"Male",109,1
+"233",NA,"Male",110,8
+"234","Related to old age","Male",111,1
+"235",NA,"Male",113,1
+"236",NA,"Male",118,1
+"237",NA,"Male",122,1
+"238",NA,"Male",130,1

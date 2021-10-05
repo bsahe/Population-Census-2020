@@ -1,0 +1,57 @@
+"","province","area_council","urban_rural","yesLotsofDifficulty","yesSomeDifficulty","noNoDifficulty","cannotDoAtAll"
+"1","Malampa","central malekula",2,0,0,0,0
+"2","Malampa","north ambrym",2,0,0,0,0
+"3","Malampa","north east malekula",2,0,0,0,2
+"4","Malampa","north west malekula",2,0,0,0,0
+"5","Malampa","paama",2,0,0,0,0
+"6","Malampa","south east ambrym",2,0,0,0,0
+"7","Malampa","south east malekula",2,0,0,0,1
+"8","Malampa","south malekula",2,0,0,0,2
+"9","Malampa","south west malekula",2,0,0,0,0
+"10","Malampa","west ambrym",2,0,0,0,1
+"11","Penama","central pentecost 1",2,0,0,0,0
+"12","Penama","central pentecost 2",2,0,0,0,0
+"13","Penama","east ambae",2,0,0,0,1
+"14","Penama","north ambae",2,0,0,0,3
+"15","Penama","north maewo",2,0,0,0,0
+"16","Penama","north pentecost",2,0,0,0,1
+"17","Penama","south ambae",2,0,0,0,0
+"18","Penama","south maewo",2,0,0,0,0
+"19","Penama","south pentecost",2,0,0,0,0
+"20","Penama","west ambae",2,0,0,0,0
+"21","Sanma","canal - fanafo",2,0,0,0,1
+"22","Sanma","east malo",2,0,0,0,0
+"23","Sanma","east santo",2,0,0,0,0
+"24","Sanma","luganville",1,0,0,0,6
+"25","Sanma","north santo",2,0,0,0,0
+"26","Sanma","south east santo",2,0,0,0,0
+"27","Sanma","south santo",2,0,0,0,1
+"28","Sanma","west santo",2,0,0,0,0
+"29","Shefa","erakor",2,0,0,0,2
+"30","Shefa","eratap",2,0,0,0,0
+"31","Shefa","eton",2,0,0,0,0
+"32","Shefa","ifira",2,0,0,0,0
+"33","Shefa","makimae",2,0,0,0,0
+"34","Shefa","malorua",2,0,0,0,0
+"35","Shefa","mele",2,0,0,0,0
+"36","Shefa","nguna",2,0,0,0,0
+"37","Shefa","north efate",2,0,0,0,1
+"38","Shefa","north tongoa",2,0,0,0,0
+"39","Shefa","port vila",1,0,0,0,6
+"40","Shefa","south epi",2,0,0,0,0
+"41","Shefa","varisu",2,0,0,0,0
+"42","Shefa","vermali",2,0,0,0,0
+"43","Tafea","aneityum",2,0,0,0,0
+"44","Tafea","middle bush tanna",2,0,0,0,1
+"45","Tafea","north erromango",2,0,0,0,0
+"46","Tafea","north tanna",2,0,0,0,0
+"47","Tafea","south erromango",2,0,0,0,1
+"48","Tafea","south tanna",2,0,0,0,0
+"49","Tafea","south west tanna",2,0,0,0,1
+"50","Tafea","west tanna",2,0,0,0,2
+"51","Tafea","whitesands",2,0,0,0,1
+"52","Torba","gaua",2,0,0,0,1
+"53","Torba","mota",2,0,0,0,0
+"54","Torba","motalava",2,0,0,0,1
+"55","Torba","torres",2,0,0,0,0
+"56","Torba","vanua lava",2,0,0,0,0
