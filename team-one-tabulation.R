@@ -2,6 +2,8 @@
 #install.packages('tidyverse')
 #install.packages('dplyr')
 #install.packages('tidyr')
+#install.packages("xlsx")
+library(xlsx)
 library(RSQLite) #Use SQLite database to store and read data
 library(dplyr) # Data manipulation
 library(tidyverse) #Data science package
@@ -115,10 +117,10 @@ residAgeGrpSexPov <- reAgeGrpSex %>%
 
 ##Table 2.6: Usual resident population by single age and sex, and province
 resdPopSexProv <- dbGetQuery(mydb, "SELECT age,sex,residence,province,
-                                      round(sum(ac_factor)) as population
+                                      sum(ac_factor) as population
                                       FROM person
                                       WHERE can_enumerate = 1
-                         GROUP BY age,sex,residence,province") #Residenc population by sex, single age and province.\
+                         GROUP BY age, sex, province") #Residenc population by sex, single age and province.\
 
 resdPopSexAc <- dbGetQuery(mydb, "SELECT age,sex,residence,area_council,
                                       round(sum(ac_factor)) as population
@@ -137,11 +139,16 @@ resdPopSexAcPov <- resdPopSexAc %>%
   pivot_wider(names_from = residence, values_from = population, values_fill = 0) %>%
   ungroup()
 
+dbWriteTable(t1, "resdPopSexPov", resdPopSexPov, overwrite=TRUE)
+
+write.csv(resdPopSexPov,"C:\\Census 2020\\resdPopAgeSexProv.csv", row.names = FALSE)
+
+
 #### Demography ####
 
 ##Table 8.1.1: Total population by 5-year age group, whether biological mother is still alive and by province 
 bioMotherpop <- dbGetQuery(mydb, "SELECT age_5yr_grp_80, province, birth_mother_alive,
-                                               round (sum (ac_factor)) as population
+                                               sum (ac_factor) as population
                                                FROM person
                                                WHERE can_enumerate = 1
                                                GROUP by age_5yr_grp_80, province, birth_mother_alive") #population by 5 year age, Biological Mother still Alive
@@ -152,6 +159,10 @@ bioMomProv <- bioMotherpop %>%
  ungroup()
 
 
+dbWriteTable(t1, "bioMomProv", bioMomProv, overwrite=TRUE)
+
+write.csv(bioMomProv,"C:\\Census 2020\\bioMomProv.csv", row.names = FALSE)
+
 ##Table8.1.2: Total Population by 5-year age group, whether biological father is still alive and by province 
 bioFatherpop <- dbGetQuery(mydb, "SELECT age_5yr_grp_80, province, father_alive,
                                                round (sum (ac_factor)) as population
@@ -160,25 +171,29 @@ bioFatherpop <- dbGetQuery(mydb, "SELECT age_5yr_grp_80, province, father_alive,
                                                GROUP by age_5yr_grp_80, province, father_alive") #population by 5 year age, Biological father still Alive
 
 
-#bioDadProv <- bioFatherpop %>%
-# filter(population != "NA") %>%
-# pivot_wider(names_from = father_alive, values_from = population, values_fill = 0) %>%
-# ungroup()
+bioDadProv <- bioFatherpop %>%
+ filter(population != "NA") %>%
+ pivot_wider(names_from = father_alive, values_from = population, values_fill = 0) %>%
+ ungroup()
 
 ##Table 8.2.1: Female population 15 years and over older by 5-year age group and whether ever given birth by province and urban-rural 
-#Group to check this table for this figures.
-femGivenBirthPop <- dbGetQuery(mydb, "SELECT age_5yr_grp_80,ever_given_birth, totfemale, urban_rural,province, hhld_type,
-                                               round (sum (ac_factor)) as population
-                                               FROM person
-                                               WHERE can_enumerate = 1
-                                               GROUP by age_5yr_grp_80,totfemale, ever_given_birth, urban_rural, province, hhld_type") #Female population 15 years and older, given birth.
+femGivenBirthPop <- dbGetQuery(mydb, "SELECT age_5yr_grp_80, ever_given_birth, urban_rural, province,
+                                 ROUND(sum(ac_factor * totfemale)) as population
+                                 FROM person
+                                 WHERE can_enumerate = 1 AND ever_given_birth != 'NA'
+                                 GROUP BY  province, area_council, ever_given_birth, urban_rural, age_5yr_grp_80") #Total Male population by 5 year age group
+ 
+#femGivenBirthPop_pivot <- pivot_wider(femGivenBirthPop, names_from = ever_given_birth, values_from = population, values_fill = 0)
+#View(femGivenBirthPop_pivot)
+
+#View(dbgetquery(mydb, "SELECT * FROM person"))
 
 ##Table 8.2.2: Female population 15 years and overolder by 5-year age group and total number of children ever born alive by province and urban-rural 
-birthChildAlivePop <- dbGetQuery(mydb, "SELECT age_5yr_grp_80,totfemale,age,ever_given_birth, urban_rural,province, hhld_type,
-                                               round (sum (ac_factor)) as population
+birthChildAlivePop <- dbGetQuery(mydb, "SELECT age_5yr_grp_80,ever_given_birth, urban_rural,province,
+                                               ROUND(sum(ac_factor * totfemale)) as population
                                                FROM person
-                                               WHERE can_enumerate = 1
-                                               GROUP by age_5yr_grp_80,age,ever_given_birth, urban_rural, province, hhld_type") 
+                                               WHERE can_enumerate = 1 AND ever_given_birth != 'NA'
+                                               GROUP by age_5yr_grp_80,ever_given_birth, urban_rural, province") 
 
 ##Table 8.2.3: Female population 15 years and over older by 5-year age group and total number of children dead by province and urban-rural 
 #Female population 15 years and over older by 5-year age group and total number of children dead by province and urban-rural 
